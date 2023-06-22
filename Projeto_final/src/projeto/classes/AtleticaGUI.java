@@ -1,3 +1,5 @@
+package projeto.classes;
+
 public class AtleticaGUI {
 
     public static void main(String args[]) {

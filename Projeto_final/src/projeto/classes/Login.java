@@ -1,3 +1,4 @@
+package projeto.classes;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
@@ -37,7 +38,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
+        //jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

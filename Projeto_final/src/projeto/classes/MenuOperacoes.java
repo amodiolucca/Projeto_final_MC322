@@ -1,10 +1,11 @@
+package projeto.classes;
 
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
 public class MenuOperacoes extends javax.swing.JFrame {
-
+	private String raUsuario;
     /**
      * Creates new form MenuOperacoes
      * @param raUsuario
@@ -12,8 +13,12 @@ public class MenuOperacoes extends javax.swing.JFrame {
     public MenuOperacoes(String raUsuario) {
         initComponents();
         usuarioLogado.setText("Usuário logado: " + raUsuario);
+        this.raUsuario = raUsuario;
     }
-
+    
+    public String getRaUsuario() {
+    	return raUsuario;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,7 +106,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
+        //jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
 
         usuarioLogado.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         usuarioLogado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
