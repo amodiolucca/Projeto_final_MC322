@@ -1,4 +1,4 @@
-package projeto.classes;
+package projeto.classes.Pessoa;
 
 public class Presidente extends Pessoa {
 	

@@ -1,4 +1,4 @@
-package projeto.classes;
+package projeto.classes.Pessoa;
 
 public abstract class Pessoa {
 	

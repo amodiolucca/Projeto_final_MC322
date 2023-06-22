@@ -1,6 +1,8 @@
-package projeto.classes;
+package projeto.classes.Pessoa;
 
 import java.util.ArrayList;
+
+import projeto.classes.Area.Area;
 
 public class Membro extends Pessoa {
 	

@@ -1,6 +1,8 @@
-package projeto.classes;
+package projeto.classes.Area;
 
 import java.util.ArrayList;
+
+import projeto.classes.Pessoa.Pessoa;
 
 public abstract class Area {
 	

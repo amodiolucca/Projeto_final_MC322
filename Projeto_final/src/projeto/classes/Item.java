@@ -1,4 +1,4 @@
-package projeto.classes;
+package projeto.classes.Area.Produtos;
 
 public class Item {
 	

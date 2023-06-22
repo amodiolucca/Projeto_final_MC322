@@ -1,4 +1,6 @@
-package projeto.classes;
+package projeto.classes.Pessoa;
+
+import projeto.classes.Area.Area;
 
 public class Conselheiro extends Pessoa {
 	

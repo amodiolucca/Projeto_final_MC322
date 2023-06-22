@@ -1,6 +1,9 @@
-package projeto.classes;
+package projeto.classes.Area.Financeiro;
 
 import java.util.ArrayList;
+
+import projeto.classes.Area.Area;
+import projeto.classes.Pessoa.Pessoa;
 
 public class Caixa {
 	private static Double saldoAtual;
