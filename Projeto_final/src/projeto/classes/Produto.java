@@ -3,7 +3,6 @@ package projeto.classes;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Produto {
@@ -92,6 +91,7 @@ public class Produto {
 			Caixa.gerarMovimentacao(precoVenda, "Venda do produto: "+this.getNome(), null , null); //ALTERAR!!!
 			//depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
 			//Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
+			
 			return true;
 		}
 		return false;
@@ -111,12 +111,14 @@ public class Produto {
 			while((linha = in.readLine())!= null) {
 				String[] dados = linha.split(separador);
 				if(!dados[0].equals("AAAECA")) {
+					Caixa.gerarMovimentacao(-precoCompra, "Compra do produto: "+this.getNome(), null , null);
 					encomenda.add(new Encomenda(dados[0], dados [1], new Item(dados[2])));
 				} else {
 					// TODO Repeticao de itens
 					Item item = new Item(dados[2]);
 					item.setQuantidadeDisponivel(Integer.parseInt(dados[3]));
 					estoque.add(item);
+					Caixa.gerarMovimentacao(-precoCompra*Integer.parseInt(dados[3]), "Venda do produto: "+this.getNome(), null , null);
 				}
 			}
 			in.close();

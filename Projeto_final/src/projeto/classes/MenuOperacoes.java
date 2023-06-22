@@ -607,9 +607,9 @@ public class MenuOperacoes extends javax.swing.JFrame {
     private void botaoTelaGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTelaGerarRelatorioActionPerformed
         // TODO Apresentamos os dados atualizados do Caixa da Atletica com duas casas decimais
         labelSaldoInicio.setText(String.format("%.2f", 78946.612)); // String.format("%.2f", Atletica.Caixa.getSaldoInicioGestao())
-        labelSaldoAtual.setText(String.format("%.2f", 12465.989)); // String.format("%.2f", Atletica.Caixa.getSaldoAtual())
+        labelSaldoAtual.setText(String.format("%.2f", Caixa.getSaldoAtual())); // String.format("%.2f", Atletica.Caixa.getSaldoAtual())
         labelBalanco.setText(String.format("%.2f", 123123.66)); // String.format("%.2f", Atletica.Caixa.getBalanco())
-        labelTotalMembros.setText(String.format("%.2f", 56.123123123)); // String.valueOf(Atletica.getMembros().size())
+        labelTotalMembros.setText(String.format("%d", Atletica.getIntegrantes().size())); // String.valueOf(Atletica.getMembros().size())
 
         telasOperacoes.setSelectedIndex(1);
     }//GEN-LAST:event_botaoTelaGerarRelatorioActionPerformed

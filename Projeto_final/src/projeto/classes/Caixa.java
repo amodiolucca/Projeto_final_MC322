@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 
 public class Caixa {
-	private static Double saldoAtual;
+	private static Double saldoAtual = 975.69;
 	private static ArrayList<Movimentacao> movimentacoes;
+	private static Double saldoInicioGestao = 975.69;
+	private static Double balanco = saldoAtual - saldoInicioGestao;
 	
 	public static Double getSaldoAtual() {
 		return saldoAtual;
@@ -21,6 +23,8 @@ public class Caixa {
 	}
 	
 	public static boolean gerarMovimentacao(Double valor, String descricao, Area area, Pessoa solicitante) {
+		saldoAtual += valor;
+		balanco += valor;
 		return movimentacoes.add(new Movimentacao(valor, descricao, area, solicitante));
 	}
 	

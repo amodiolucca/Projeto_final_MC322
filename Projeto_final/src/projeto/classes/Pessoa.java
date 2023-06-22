@@ -2,24 +2,22 @@ package projeto.classes;
 
 public abstract class Pessoa {
 	
-	private int ra;
+	private String ra;
 	private String nome;
 	private String telefone;
-	private String email;
 	
 	//Construtor
-	public Pessoa(int ra, String nome, String telefone, String email) {
+	public Pessoa(String ra, String nome, String telefone) {
 		this.ra = ra;
 		this.nome = nome;
 		this.telefone = telefone;
-		this.email = email;
 	}
 	
 	//getters e setters
-	public int getRa() {
+	public String getRa() {
 		return ra;
 	}
-	public void setRa(int ra) {
+	public void setRa(String ra) {
 		this.ra = ra;
 	}
 	
@@ -36,12 +34,6 @@ public abstract class Pessoa {
 	public void SetTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	public String getEmail() {
-		return email;
-	}
-	public void SetEmail(String email) {
-		this.email = email;
-	}
+
 	
 }

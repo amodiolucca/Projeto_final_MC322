@@ -5,19 +5,19 @@ import java.util.ArrayList;
 
 public class Membro extends Pessoa {
 	
-	private ArrayList<Area> areasDeInteresse;
+	private ArrayList<String> areasDeInteresse;
 	
 	//Construtor
-	public Membro(int ra, String nome, String telefone, String email) {
-		super(ra, nome, telefone, email);
+	public Membro(String ra, String nome, String telefone) {
+		super(ra, nome, telefone);
 		this.areasDeInteresse = new ArrayList<>();
 	}
 	
 	//getters e setters
-	public ArrayList<Area> getAreasDeInteresse(){
+	public ArrayList<String> getAreasDeInteresse(){
 		return areasDeInteresse;
 	}
-	public void setAreasDeInteresse(ArrayList<Area> lista) {
+	public void setAreasDeInteresse(ArrayList<String> lista) {
 		this.areasDeInteresse = lista;
 	}
 }

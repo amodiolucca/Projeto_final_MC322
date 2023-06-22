@@ -6,8 +6,8 @@ public class Conselheiro extends Pessoa {
 	private Area areaAnterior;
 	
 	//Construtor
-	public Conselheiro(int ra, String nome, String telefone, String email, Area area) {
-		super(ra, nome, telefone, email);
+	public Conselheiro(String ra, String nome, String telefone, String email, Area area) {
+		super(ra, nome, telefone);
 		this.areaAnterior = area;
 	}
 	
