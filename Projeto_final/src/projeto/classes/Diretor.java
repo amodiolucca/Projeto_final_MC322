@@ -1,6 +1,5 @@
-package projeto.classes.Pessoa;
+package projeto.classes;
 
-import projeto.classes.Area.Area;
 
 public class Diretor extends Pessoa {
 	

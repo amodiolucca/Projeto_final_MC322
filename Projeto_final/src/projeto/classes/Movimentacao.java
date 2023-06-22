@@ -1,7 +1,5 @@
-package projeto.classes.Area.Financeiro;
+package projeto.classes;
 
-import projeto.classes.Area.Area;
-import projeto.classes.Pessoa.Pessoa;
 
 public class Movimentacao {
 	private double valor;

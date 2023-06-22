@@ -3,6 +3,9 @@ package projeto.classes;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
 
 public class MenuOperacoes extends javax.swing.JFrame {
 	private String raUsuario;
@@ -12,7 +15,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
      */
     public MenuOperacoes(String raUsuario) {
         initComponents();
-        usuarioLogado.setText("Usuário logado: " + raUsuario);
+        //usuarioLogado.setText("Usuário logado: " + raUsuario);
         this.raUsuario = raUsuario;
     }
 
@@ -160,7 +163,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
         jLabel1.setText("Operações");
 
         // Se tiver dando erro comente a linha abaixo
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
+        //jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
 
         labelUsuarioLogado.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         labelUsuarioLogado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
