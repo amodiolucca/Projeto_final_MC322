@@ -1,4 +1,4 @@
-package projeto.classes;
+	package projeto.classes;
 
 public class Item {
 	
@@ -24,6 +24,11 @@ public class Item {
 
 	public void setQuantidadeDisponivel(int quantidadeDisponivel) {
 		this.quantidadeDisponivel = quantidadeDisponivel;
+	}
+
+	@Override
+	public String toString() {
+		return "Item [tamanho=" + tamanho + ", quantidadeDisponivel=" + quantidadeDisponivel + "]";
 	}
 	
 	

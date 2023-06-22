@@ -14,7 +14,7 @@ public class Produto {
 	private double precoVenda;
 	private ArrayList<Item> estoque;
 	private ArrayList<Encomenda> encomenda;
-	private LocalDate anoProducao;
+	private String anoProducao;
 	private int quantidadeVendida = 0;
 	private double lucro = 0.0;
 	
@@ -25,7 +25,7 @@ public class Produto {
 		this.precoVenda = precoVenda;
 		this.estoque = new ArrayList<>();
 		this.encomenda = new ArrayList<>();
-		this.anoProducao = LocalDate.parse(anoProducao);
+		this.anoProducao = anoProducao;
 		this.quantidadeVendida = 0;
 		this.lucro = 0.0;
 	}
@@ -66,11 +66,11 @@ public class Produto {
 	public void setEncomenda(ArrayList<Encomenda> encomenda) {
 		this.encomenda = encomenda;
 	}
-	public LocalDate getAnoProducao() {
+	public String getAnoProducao() {
 		return anoProducao;
 	}
 	public void setAnoProducao(String anoProducao) {
-		this.anoProducao = LocalDate.parse(anoProducao);
+		this.anoProducao = anoProducao;
 	}
 	public int getQuantidadeVendida() {
 		return quantidadeVendida;
@@ -103,7 +103,7 @@ public class Produto {
 		}
 	}
 	
-	public boolean criarProduto(String nome,int id, double precoCompra, double precoVenda, String anoProducao, String path) {
+	public boolean criarProduto(String path) {
 		String linha = "";
 		String separador = ";";
 		try {
@@ -111,10 +111,11 @@ public class Produto {
 			while((linha = in.readLine())!= null) {
 				String[] dados = linha.split(separador);
 				if(!dados[0].equals("AAAECA")) {
-					encomenda.add(new Encomenda(dados[0], dados [1], new Item(dados[3])));
+					encomenda.add(new Encomenda(dados[0], dados [1], new Item(dados[2])));
 				} else {
-					Item item = new Item(dados[3]);
-					item.setQuantidadeDisponivel(Integer.parseInt(dados[4]));
+					// TODO Repeticao de itens
+					Item item = new Item(dados[2]);
+					item.setQuantidadeDisponivel(Integer.parseInt(dados[3]));
 					estoque.add(item);
 				}
 			}

@@ -15,7 +15,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
      */
     public MenuOperacoes(String raUsuario) {
         initComponents();
-        //usuarioLogado.setText("Usuário logado: " + raUsuario);
+        labelUsuarioLogado.setText("Usuário logado: " + raUsuario);
         this.raUsuario = raUsuario;
     }
 
@@ -163,7 +163,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
         jLabel1.setText("Operações");
 
         // Se tiver dando erro comente a linha abaixo
-        //jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("./logoinblack.png"))); // NOI18N
 
         labelUsuarioLogado.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         labelUsuarioLogado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -716,7 +716,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
     }
 
     private void adicionaLinhasTabelaEstoque() {
-        // TODO Alterara para a Classe Produto (usar dois loops, pegar os itens contidos em estoque do produto)
+        // TODO Alterar para a Classe Produto (usar dois loops, pegar os itens contidos em estoque do produto)
         DefaultTableModel model = (DefaultTableModel) tabelaEstoque.getModel();
         ArrayList<teste> l = lista();
         Object dadosLinha[] = new Object[7];
