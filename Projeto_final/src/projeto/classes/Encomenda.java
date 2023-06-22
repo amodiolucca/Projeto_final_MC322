@@ -1,4 +1,4 @@
-package projeto.classes.Area.Produtos;
+package projeto.classes;
 
 public class Encomenda {
 	private boolean retirada;
