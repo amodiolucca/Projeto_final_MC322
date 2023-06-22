@@ -37,8 +37,9 @@ public class Login extends javax.swing.JFrame {
         setName("telaCadastro"); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        //jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
+        
+        // Se tiver dando erro comente a linha abaixo
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logoinblack.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -153,15 +154,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_senhaUsuarioActionPerformed
     
-    private void close() {
-        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
-    }
-    
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
         String stringSenha = String.valueOf(senhaUsuario.getPassword());
         String stringRa = raUsuario.getText();
-        // Analisar validade com banco de dados de usuarios (hashMap)
+        // TODO Analisar validade com banco de dados de usuarios (hashMap)
         if (stringRa.equals("238316") && stringSenha.equals("123")) {
             close();
             MenuOperacoes menu = new MenuOperacoes(stringRa);
@@ -170,6 +166,11 @@ public class Login extends javax.swing.JFrame {
             loginInvalido.setText("ERRO: Login inválido!");
         }
     }//GEN-LAST:event_botaoLoginActionPerformed
+
+    private void close() {
+        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoLogin;
