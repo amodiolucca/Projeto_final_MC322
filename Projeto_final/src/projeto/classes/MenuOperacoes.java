@@ -662,24 +662,24 @@ public class MenuOperacoes extends javax.swing.JFrame {
         // TODO Alterar para as variáveis referentes a cada Área
         switch (selection) {
             case 0: // Esportes
-                labelMembrosArea.setText(String.format("%d", 24));
-                labelSaldoArea.setText(String.format("%.2f", 123.123));
+                labelMembrosArea.setText(String.format("%d", Esportes.getMembrosInteressados().size()));
+                labelSaldoArea.setText(String.format("%.2f", Esportes.getSaldoFinanceiro()));
                 break;
             case 1: // Eventos
-                labelMembrosArea.setText(String.format("%d", 12));
-                labelSaldoArea.setText(String.format("%.2f", 5.66));
+                labelMembrosArea.setText(String.format("%d", Eventos.getMembrosInteressados().size()));
+                labelSaldoArea.setText(String.format("%.2f", Eventos.getSaldoFinanceiro()));
                 break;
             case 2: // Financeiro
-                labelMembrosArea.setText(String.format("%d", 9));
-                labelSaldoArea.setText(String.format("%.2f", 789.96));
+                labelMembrosArea.setText(String.format("%d",Financeiro.getMembrosInteressados().size()));
+                labelSaldoArea.setText(String.format("%.2f", Financeiro.getSaldoFinanceiro()));
                 break;
             case 3: // Social
-                labelMembrosArea.setText(String.format("%d", 26));
-                labelSaldoArea.setText(String.format("%.2f", 456.963));
+                labelMembrosArea.setText(String.format("%d", Social.getMembrosInteressados().size()));
+                labelSaldoArea.setText(String.format("%.2f", Social.getSaldoFinanceiro()));
                 break;
             case 4: // Produtos
-                labelMembrosArea.setText(String.format("%d", 10));
-                labelSaldoArea.setText(String.format("%.2f", 10.0));
+                labelMembrosArea.setText(String.format("%d", Produtos.getMembrosInteressados().size()));
+                labelSaldoArea.setText(String.format("%.2f", Produtos.getSaldoFinanceiro()));
                 break;
             default:
                 break;

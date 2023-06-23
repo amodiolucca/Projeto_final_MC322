@@ -5,7 +5,7 @@ public class Presidente extends Pessoa {
 	private boolean cargo; //Presidente(true), Vice-presidente(false)
 	
 	//Construtor
-	public Presidente(String ra, String nome, String telefone, String email, boolean cargo) {
+	public Presidente(String ra, String nome, String telefone, boolean cargo) {
 		super(ra, nome, telefone);
 		this.cargo = cargo;
 	}

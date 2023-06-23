@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Atletica {
     
@@ -29,8 +28,8 @@ public class Atletica {
     public static ArrayList<Pessoa> getIntegrantes() {
         return integrantes;
     }
-    public void setIntegrantes(ArrayList<Pessoa> integrantes) {
-        this.integrantes = integrantes;
+    public static void setIntegrantes(ArrayList<Pessoa> integrantes) {
+        Atletica.integrantes = integrantes;
     }
     /*
     public ArrayList<Area> getAreas() {
@@ -58,19 +57,30 @@ public class Atletica {
         return false;
     }
     
-    public static boolean leituraIntegrantes(String path) {
+    public static boolean leituraIntegrantes() {
     	String linha = "";
 		String separador = ";";
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(path));
+			BufferedReader in = new BufferedReader(new FileReader(".//src/projeto/classes/dadosIntegrantes.csv"));
 			while((linha = in.readLine())!= null) {
 				String[] dados = linha.split(separador);
 				if(dados[0].equals("Membro")) {
 					Membro membro = new Membro(dados[1], dados[2], dados[3]);
 					membro.getAreasDeInteresse().add(dados[4]);
-				} /*else if (dados[0].equals("Diretor")) {
-					
-				}*/
+					integrantes.add(membro);
+				} else if (dados[0].equals("Diretor")) {
+					Diretor diretor = new Diretor(dados[1], dados[2], dados[3], dados[4]);
+					integrantes.add(diretor);
+				} else if(dados[0].equals("Presidente")) {
+					Presidente presidente = new Presidente(dados[1], dados[2], dados[3],true);
+					integrantes.add(presidente);
+				} else if(dados[0].equals("Vice-Presidente")) {
+					Presidente presidente = new Presidente(dados[1], dados[2], dados[3],false);
+					integrantes.add(presidente);
+				} else if(dados[0].equals("Conselheiro")) {
+					Conselheiro conselheiro = new Conselheiro(dados[1], dados[2], dados[3], dados[4]);
+					integrantes.add(conselheiro);
+				}
 			}
 			in.close();
 			return true;
