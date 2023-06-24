@@ -8,8 +8,8 @@ public class Membro extends Pessoa {
 	private ArrayList<String> areasDeInteresse;
 	
 	//Construtor
-	public Membro(String ra, String nome, String telefone) {
-		super(ra, nome, telefone);
+	public Membro(String ra, String nome, String telefone, String senha) {
+		super(ra, nome, telefone, senha);
 		this.areasDeInteresse = new ArrayList<>();
 	}
 	

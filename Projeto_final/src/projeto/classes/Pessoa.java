@@ -5,12 +5,14 @@ public abstract class Pessoa {
 	private String ra;
 	private String nome;
 	private String telefone;
+	private final String senha;
 	
 	//Construtor
 	public Pessoa(String ra, String nome, String telefone) {
 		this.ra = ra;
 		this.nome = nome;
 		this.telefone = telefone;
+		this.senha = senha;
 	}
 	
 	//getters e setters

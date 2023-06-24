@@ -1,4 +1,4 @@
-	package projeto.classes;
+package projeto.classes;
 
 public class Item {
 	

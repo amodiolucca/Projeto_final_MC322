@@ -2,23 +2,23 @@ package projeto.classes;
 
 import java.util.ArrayList;
 
-
 public class Caixa {
-	private static Double saldoAtual = 975.69;
-	private static ArrayList<Movimentacao> movimentacoes;
-	private static Double saldoInicioGestao = 975.69;
-	private static Double balanco = saldoAtual - saldoInicioGestao;
+	// TODO corrigir e mantenha sem ser static pfv
+	private Double saldoAtual = 975.69;
+	private Double saldoInicioGestao = 975.69;
+	private Double balanco = saldoAtual - saldoInicioGestao;
+	private ArrayList<Movimentacao> movimentacoes;
 	
-	public static Double getSaldoAtual() {
+	public Double getSaldoAtual() {
 		return saldoAtual;
 	}
-	public static void setSaldoAtual(Double saldoAtual) {
+	public void setSaldoAtual(Double saldoAtual) {
 		Caixa.saldoAtual = saldoAtual;
 	}
-	public static ArrayList<Movimentacao> getMovimentacoes() {
+	public ArrayList<Movimentacao> getMovimentacoes() {
 		return movimentacoes;
 	}
-	public static void setMovimentacoes(ArrayList<Movimentacao> movimentacoes) {
+	public void setMovimentacoes(ArrayList<Movimentacao> movimentacoes) {
 		Caixa.movimentacoes = movimentacoes;
 	}
 	
@@ -27,6 +27,4 @@ public class Caixa {
 		balanco += valor;
 		return movimentacoes.add(new Movimentacao(valor, descricao, area, solicitante));
 	}
-	
-	
 }

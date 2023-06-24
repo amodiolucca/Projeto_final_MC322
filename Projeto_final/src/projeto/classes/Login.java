@@ -4,12 +4,18 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
 public class Login extends javax.swing.JFrame {
-
+    
+    // Referência a instância de Atletica para o qual a GUI de Login se refere
+    private Atletica atleticaRegistrada;
+    
     /**
      * Creates new form Login
+     * 
+     * @param atleticaECA
      */
-    public Login() {
+    public Login(Atletica atleticaECA) {
         initComponents();
+        atleticaRegistrada = atleticaECA;
     }
 
     /**
@@ -37,8 +43,7 @@ public class Login extends javax.swing.JFrame {
         setName("telaCadastro"); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        
-        // Se tiver dando erro comente a linha abaixo
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("./logoinblack.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,7 +88,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        botaoLogin.setBackground(new java.awt.Color(204, 204, 204));
         botaoLogin.setFont(new java.awt.Font("Garuda", 1, 16)); // NOI18N
         botaoLogin.setText("Login");
         botaoLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -155,12 +159,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_senhaUsuarioActionPerformed
     
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
-        String stringSenha = String.valueOf(senhaUsuario.getPassword());
         String stringRa = raUsuario.getText();
-        // TODO Analisar validade com banco de dados de usuarios (hashMap)
-        if (stringRa.equals("238316") && stringSenha.equals("123")) {
+        String stringSenha = String.valueOf(senhaUsuario.getPassword());
+        
+        if (atleticaRegistrada.verificaLoginSistema(stringRa, stringSenha)) {
             close();
-            MenuOperacoes menu = new MenuOperacoes(stringRa);
+            Pessoa usuario = atleticaRegistrada.getIntegrantes().get(stringRa);
+            MenuOperacoes menu = new MenuOperacoes(usuario, atleticaRegistrada);
             menu.setVisible(true);
         } else {
             loginInvalido.setText("ERRO: Login inválido!");
@@ -171,7 +176,7 @@ public class Login extends javax.swing.JFrame {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoLogin;
     private javax.swing.JLabel jLabel1;

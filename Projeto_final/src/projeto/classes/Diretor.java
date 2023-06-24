@@ -6,8 +6,8 @@ public class Diretor extends Pessoa {
 	private String area;
 	
 	//Construtor
-	public Diretor(String ra, String nome, String telefone, String area) {
-		super(ra, nome, telefone);
+	public Diretor(String ra, String nome, String telefone, String area, String senha) {
+		super(ra, nome, telefone, senha);
 		this.area = area;
 	}
 	
