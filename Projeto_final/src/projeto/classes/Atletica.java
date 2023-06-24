@@ -10,8 +10,13 @@ public class Atletica {
     private static String nome;
     private static String AnoGestao;
     private static ArrayList<Pessoa> integrantes = new ArrayList<>();
-    //ArrayList<Area> areas = new ArrayList<>(Arrays.asList(Esportes,Eventos,Financeiro, Social, Produtos));
+    private static ArrayList<Area> areas = new ArrayList<Area>();
     //private static Caixa caixa;
+
+    public void iniciarAreas(){
+        Eventos eventos = new Eventos();
+        areas.add(eventos);
+    }
     
     public static String getNome() {
         return nome;

@@ -4,57 +4,57 @@ import java.util.ArrayList;
 
 public abstract class Area {
 	
-	private static String nome;
-	private static ArrayList<Pessoa> diretores;
-	private static Double saldoFinanceiro;
-	private static ArrayList<Pessoa> membrosInteressados;
+	private String nome;
+	private ArrayList<Pessoa> diretores;
+	private Double saldoFinanceiro;
+	private ArrayList<Pessoa> membrosInteressados;
 	
 	//Construtor
-	/*public Area(String nome) {
-		this.nome = nome;
-		this.diretores = new ArrayList<>();
-		this.saldoFinanceiro = 0.0; //inicializa o saldo da área como 0
-		this.membrosInteressados = new ArrayList<>();
-	}*/
+	public Area(String name) {
+		name = nome;
+		diretores = new ArrayList<>();
+		saldoFinanceiro = 0.0; //inicializa o saldo da área como 0
+		membrosInteressados = new ArrayList<>();
+	}
 	
 	//getters e setters
-	public static String getNome() {
+	public String getNome() {
 		return nome;
 	}
-	public static void setNome(String nome) {
-		Area.nome = nome;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
-	public static ArrayList<Pessoa> getDiretores(){
+	public ArrayList<Pessoa> getDiretores(){
 		return diretores;
 	}
-	public static void setDiretores(ArrayList<Pessoa> lista) {
-		Area.diretores = lista;
+	public void setDiretores(ArrayList<Pessoa> lista) {
+		this.diretores = lista;
 	}
 	
-	public static Double getSaldoFinanceiro() {
+	public Double getSaldoFinanceiro() {
 		return saldoFinanceiro;
 	}
-	public static void setSaldoFinanceiro(Double saldo) {
-		Area.saldoFinanceiro = saldo;
+	public void setSaldoFinanceiro(Double saldo) {
+		this.saldoFinanceiro = saldo;
 	}
 	
-	public static ArrayList<Pessoa> getMembrosInteressados(){
+	public ArrayList<Pessoa> getMembrosInteressados(){
 		return membrosInteressados;
 	}
-	public static void setMembrosInteressados(ArrayList<Pessoa> lista) {
-		Area.membrosInteressados = lista;
+	public void setMembrosInteressados(ArrayList<Pessoa> lista) {
+		this.membrosInteressados = lista;
 	}
 	
 	
-	public static boolean adicionarMembro(Pessoa pessoa) {
+	public boolean adicionarMembro(Pessoa pessoa) {
 		if(!membrosInteressados.contains(pessoa)) {
 			return membrosInteressados.add(pessoa);
 		}
 		return false;
 	}
 	
-	public static boolean removerMembro(Pessoa pessoa) {
+	public boolean removerMembro(Pessoa pessoa) {
 		if(membrosInteressados.contains(pessoa)) {
 			return membrosInteressados.remove(pessoa);
 		}
