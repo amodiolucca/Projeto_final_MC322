@@ -11,6 +11,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
     private Atletica atleticaRegistrada; // Referência a instância de Atletica para o qual a GUI de MenuOperacoes se refere
     private Pessoa usuarioLogado; // Referência a instância de Pessoa associada ao usuário logado
     
+    
     /**
      * Creates new form MenuOperacoes
      * @param usuario
@@ -22,6 +23,11 @@ public class MenuOperacoes extends javax.swing.JFrame {
         labelCargoAreaUsuarioLogado.setText("Cargo do usuário: " + usuario.getClass().getSimpleName());
         atleticaRegistrada = atleticaECA;
         usuarioLogado = usuario;
+        
+    }
+    
+    public Pessoa getUsuario(){
+    	return usuarioLogado;
     }
     
     // ********* APAGAR ESSA, APENAS TESTANDO O USO DO SCROLLPANE COM TABLE 
@@ -142,7 +148,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Operações - Sistema de Gerenciamento AAAECA");
         setName("telaMenu"); // NOI18N
-
+     
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         botaoTelaGerarMovimentacao.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
@@ -728,7 +734,14 @@ public class MenuOperacoes extends javax.swing.JFrame {
         if (!valorMovimentacao.getText().isEmpty() && !descricaoMovimentacao.getText().isEmpty()
                 && (radioVenda.isSelected() || radioCompra.isSelected())) {
             // TODO Fazer validacao se valorMovimentacao é um double, jogar exceção para usuário na tela com mensagem de erro em movimentacaoInvalida
-            double numericoValorMovimentacao = Double.parseDouble(valorMovimentacao.getText());
+            Double numericoValorMovimentacao;
+        	try {
+            	numericoValorMovimentacao = Double.parseDouble(valorMovimentacao.getText());
+            } catch(NumberFormatException ex) {
+            	System.out.println("Insira um valor válido");
+            	return;
+            }
+        	
             
             if (radioVenda.isSelected()) { // Venda, ou seja, valorMovimentacao tem sinal positivo
                 // TODO Gerar uma instância para + numericoValorMovimentacao
@@ -740,6 +753,9 @@ public class MenuOperacoes extends javax.swing.JFrame {
                     // TODO Gerar movimentação para - numericoValorMovimentacao
                     movimentacaoMensagem.setForeground(Color.green);
                     movimentacaoMensagem.setText("Movimentação registrada com sucesso!");
+                    //TODO Pegar a area escolhida pelo usuário, fazer uma busca usando o getArea da atletica, fazer um casting dessa
+                    //area pra area correspondente e gerar a movimentação
+                    //atleticaRegistrada.getCaixa().getMovimentacoes().add(null);
                 } else {
                     movimentacaoMensagem.setForeground(Color.red);
                     movimentacaoMensagem.setText("ERRO: Valor da movimentação não compatível com o cargo!");
@@ -763,6 +779,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
 
     private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
         // TODO Chamar o método de gerarRelatorio() das movimentações do caixa associado a Atletica
+    	atleticaRegistrada.getCaixa().gerarRelatorio();
     }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
 
     private void areasExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areasExtratoActionPerformed

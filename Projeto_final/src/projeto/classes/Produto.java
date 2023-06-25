@@ -104,9 +104,18 @@ public class Produto {
 		}
 	}
 	
-	public boolean criarProduto(String path) {
-		ArquivoEncomenda arquivo = new ArquivoEncomenda(this);
+	public boolean criarProduto(String path, MenuOperacoes m) {
+		ArquivoEncomenda arquivo = new ArquivoEncomenda(this , m);
 		return arquivo.lerArquivo(path);
+	}
+	
+	public Item buscarItem(String tamanho) {
+		for(Item i:estoque) {
+			if(i.getTamanho().equals(tamanho)) {
+				return i;
+			}
+		}
+		return null;
 	}
 	
 

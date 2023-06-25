@@ -46,7 +46,7 @@ public class Caixa {
 	}
 	public void gerarRelatorio() {
 		ArquivoRelatorio arquivo = new ArquivoRelatorio(this);
-		arquivo.EscreverArquivo("Projeto_final_MC322\\Projeto_final\\src\\projeto\\classes\\Relat\u00F3rio.csv");
+		arquivo.EscreverArquivo(".//src/projeto/classes/Relatorio.csv");
 		
 	}
 }
