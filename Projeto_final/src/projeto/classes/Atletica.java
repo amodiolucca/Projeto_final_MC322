@@ -11,7 +11,7 @@ public class Atletica {
     private ArrayList<Area> areas;
     private Caixa caixa;
 
-    public Atletica(String nome, String anoGestao, String path) {
+    public Atletica(String nome, String anoGestao, String path, Double saldoInicioGestao) {
         this.nome = nome;
         this.anoGestao = anoGestao;
         areas = new ArrayList<Area>(); // TODO Pensar em como já inicializar as areas no construtor para falicitar a instanciação
@@ -22,6 +22,7 @@ public class Atletica {
         } else {
             System.out.println("ERRO: Falha no registro de novos usuários!");
         }
+        this.caixa = new Caixa(saldoInicioGestao);
     }
 
     public void iniciarAreas(){
@@ -112,6 +113,14 @@ public class Atletica {
     	ArquivoIntegrantes arquivo = new ArquivoIntegrantes(this);
 		return arquivo.lerArquivo(path);
         
+    }
+    public Area getArea(String area) {
+    	for(Area a: areas) {
+    		if(a.getNome().equals(area)) {
+    			return a;
+    		}
+    	}
+    	return null;
     }
 }
 

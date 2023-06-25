@@ -6,7 +6,7 @@ public class Eventos extends Area {
 	private ArrayList<Evento> listaEventos;
 	
 	public Eventos(Atletica atletica){
-		super(atletica);
+		super(atletica, "Eventos");
 		listaEventos = new ArrayList<>();
 	}
 	
@@ -19,18 +19,20 @@ public class Eventos extends Area {
 		listaEventos.add(new Evento(nome, data, responsavel));
 		return true;
 	}
-	public boolean resultadoEvento(String nome, double lucro, Pessoa responsavel){
-		for(Evento e: listaEventos) {
-			if(e.getNome().equals(nome)) {
+	public boolean resultadoEvento(String nome, double lucro, Evento e) {
 				e.setLucro(lucro);
-				super.getAtletica().getCaixa().gerarMovimentacao(lucro, "Lucro da festa: "+e.getNome(), this , responsavel); //ALTERAR!!!
+				return super.getAtletica().getCaixa().gerarMovimentacao(lucro, "Lucro da festa: "+e.getNome(), this , e.getResponsavel()); //ALTERAR!!!
 				//depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
 				//Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
 				
-				return true;
-		}
-				return true;
+	}
+	
+	public Evento getEvento(String nome) {
+		for(Evento e:listaEventos) {
+			if (e.getNome().equals(nome)){
+				return e;
 			}
-		return false;
+		}
+		return null;
 	}
 }

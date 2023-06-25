@@ -7,17 +7,24 @@ public abstract class Area {
 	private ArrayList<Pessoa> diretores;
 	private Double saldoFinanceiro;
 	private ArrayList<Pessoa> membrosInteressados;
+	private String nome;
 	
 	//Construtor
-	public Area(Atletica atletica) {
+	public Area(Atletica atletica, String nome) {
 		this.atletica = atletica;
 		diretores = new ArrayList<>();
 		saldoFinanceiro = 0.0; //inicializa o saldo da área como 0
 		membrosInteressados = new ArrayList<>();
+		this.nome = nome;
 	}
 	
 	//getters e setters
-	
+	public String getNome(){
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	public ArrayList<Pessoa> getDiretores(){
 		return diretores;
 	}

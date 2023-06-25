@@ -6,7 +6,7 @@ public class Esportes extends Area {
     private ArrayList<Evento> listaCopas;
 	
     public Esportes(Atletica atletica) {
-    	super(atletica);
+    	super(atletica, "Esportes");
     	listaCopas = new ArrayList<>();
     }
 	public boolean registrarEvento(String nome, String data, Pessoa responsavel) {

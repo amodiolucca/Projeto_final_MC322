@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Caixa {
 	private Double saldoAtual;
 	private Double saldoInicioGestao;
-	private Double balanco = saldoAtual - saldoInicioGestao;
+	private Double balanco;
 	private ArrayList<Movimentacao> movimentacoes;
 	
-	public Caixa(Double saldoInicioGestao) {
-		this.saldoAtual = saldoInicioGestao;
-		this.saldoInicioGestao = saldoInicioGestao;
+	public Caixa(Double saldo) {
+		this.saldoAtual = saldo;
+		this.saldoInicioGestao = saldo;
 		this.balanco = 0.0;
 		this.movimentacoes = new ArrayList<>();
 	}
@@ -45,7 +45,8 @@ public class Caixa {
 		return movimentacoes.add(new Movimentacao(valor, descricao, area, solicitante));
 	}
 	public void gerarRelatorio() {
-		String saida = "";
+		ArquivoRelatorio arquivo = new ArquivoRelatorio(this);
+		arquivo.EscreverArquivo(".//src/projeto/classes/Relatório.csv");
 		
 	}
 }
