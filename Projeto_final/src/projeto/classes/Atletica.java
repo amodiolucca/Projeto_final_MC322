@@ -1,25 +1,23 @@
 package projeto.classes;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Atletica {
     
     private String nome;
-    private String AnoGestao;
+    private String anoGestao;
     private HashMap<String, Pessoa> integrantes;
     private ArrayList<Area> areas;
     private Caixa caixa;
 
-    public Atletica(String nome, String anoGestao) {
+    public Atletica(String nome, String anoGestao, String path) {
         this.nome = nome;
         this.anoGestao = anoGestao;
         areas = new ArrayList<Area>(); // TODO Pensar em como já inicializar as areas no construtor para falicitar a instanciação
+        iniciarAreas();
         integrantes = new HashMap<>();
-        if (leituraIntegrantes()) {
+        if (leituraIntegrantes(path)) {
             System.out.println("Registro de novos usuários realizado com sucesso!");
         } else {
             System.out.println("ERRO: Falha no registro de novos usuários!");
@@ -27,21 +25,29 @@ public class Atletica {
     }
 
     public void iniciarAreas(){
-        Eventos eventos = new Eventos();
+        Eventos eventos = new Eventos(this);
+        Esportes esportes = new Esportes(this);
+        Social social = new Social(this);
+        Financeiro financeiro = new Financeiro(this);
+        Produtos produtos = new Produtos(this);
+        areas.add(esportes);
         areas.add(eventos);
+        areas.add(financeiro);
+        areas.add(social);
+        areas.add(produtos);
     }
     
     public String getNome() {
         return nome;
     }
     public void setNome(String nome) {
-    	Atletica.nome = nome;
+    	this.nome = nome;
     }
     public String getAnoGestao() {
-        return AnoGestao;
+        return anoGestao;
     }
     public void setAnoGestao(String anoGestao) {
-        Atletica.AnoGestao = anoGestao;
+        this.anoGestao = anoGestao;
     }
     public HashMap<String, Pessoa> getIntegrantes() {
         return integrantes;
@@ -67,7 +73,6 @@ public class Atletica {
         return integrantes.containsKey(raUsuario) && integrantes.get(raUsuario).getSenha().equals(senhaUsuario);
     }
 
-    /*
     public ArrayList<Area> getAreas() {
         return areas;
     }
@@ -75,14 +80,13 @@ public class Atletica {
         this.areas = areas;
     }
     
-    public static Caixa getCaixa() {
+    public Caixa getCaixa() {
         return caixa;
     }
     
-    public static void setCaixa(Caixa caixa) {
-        Atletica.caixa = caixa;
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
     }
-    */
 
     // TODO Esse método só será chamado para uma movimentação de compra (Coloquei valores aleatórios, devemos mudar para adequar a realidade)
     public boolean validarMovimentacao(Pessoa usuario, Double valorMovimentacao){
@@ -104,55 +108,10 @@ public class Atletica {
                 (cargoDoUsuario.equals("Membro") && valorMovimentacao <= 200.0);
     }
 
-    private boolean leituraIntegrantes() {
-        String linha = "";
-        String separador = ",";
-        // Variáveis para a leitura de cada linha de dadosIntegrantes.csv
-        String cargoIntegrante, raIntegrante, nomeIntegrante, telefoneIntegrante, areaIntegrante, senhaIntegrante;
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(".//src/projeto/classes/dadosIntegrantes.csv"));
-            while((linha = in.readLine())!= null) {
-
-                String[] dados = linha.split(separador);
-
-                cargoIntegrante = dados[0];
-                raIntegrante = dados[1];
-                nomeIntegrante = dados[2];
-                telefoneIntegrante = dados[3];
-                areaIntegrante = dados[4];
-                senhaIntegrante = dados[5];
-
-                switch (cargoIntegrante) {
-                    case "Membro":
-                        Membro membro = new Membro(raIntegrante, nomeIntegrante, telefoneIntegrante, senhaIntegrante);
-                        membro.getAreasDeInteresse().add(areaIntegrante);
-                        integrantes.put(raIntegrante, membro);
-                        break;
-                    case "Diretor":
-                        Diretor diretor = new Diretor(raIntegrante, nomeIntegrante, telefoneIntegrante, areaIntegrante,senhaIntegrante);
-                        integrantes.put(raIntegrante,diretor);
-                        break;
-                    case "Presidente":
-                        Presidente presidente = new Presidente(raIntegrante, nomeIntegrante, telefoneIntegrante, true, senhaIntegrante);
-                        integrantes.put(raIntegrante,presidente);
-                        break;
-                    case "Vice-Presidente":
-                        Presidente vicePresidente = new Presidente(raIntegrante, nomeIntegrante, telefoneIntegrante, false, senhaIntegrante);
-                        integrantes.put(raIntegrante,vicePresidente);
-                        break;
-                    case "Conselheiro":
-                        Conselheiro conselheiro = new Conselheiro(raIntegrante, nomeIntegrante, telefoneIntegrante, areaIntegrante,senhaIntegrante);
-                        integrantes.put(raIntegrante,conselheiro);
-                        break;
-                    default:
-                        break;
-                }
-            }
-            in.close();
-            return true;
-        } catch(IOException ex) {
-            ex.printStackTrace();
-            return false;
-        }
+    private boolean leituraIntegrantes(String path) {
+    	ArquivoIntegrantes arquivo = new ArquivoIntegrantes(this);
+		return arquivo.lerArquivo(path);
+        
     }
 }
+

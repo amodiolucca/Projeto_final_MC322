@@ -12,7 +12,7 @@ public class Presidente extends Pessoa {
 	
 	//getters e setters
 	public boolean getPosicao() {
-		return cargo;
+		return posicao;
 	}
 	
 	public void setPosicao(boolean posicao) {

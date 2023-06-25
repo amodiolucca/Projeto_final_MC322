@@ -8,7 +8,7 @@ public abstract class Pessoa {
 	private final String senha;
 	
 	//Construtor
-	public Pessoa(String ra, String nome, String telefone) {
+	public Pessoa(String ra, String nome, String telefone, String senha) {
 		this.ra = ra;
 		this.nome = nome;
 		this.telefone = telefone;
@@ -35,6 +35,9 @@ public abstract class Pessoa {
 	}
 	public void SetTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+	public String getSenha() {
+		return senha;
 	}
 
 	

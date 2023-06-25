@@ -3,27 +3,20 @@ package projeto.classes;
 import java.util.ArrayList;
 
 public abstract class Area {
-	
-	private String nome;
+	private Atletica atletica;
 	private ArrayList<Pessoa> diretores;
 	private Double saldoFinanceiro;
 	private ArrayList<Pessoa> membrosInteressados;
 	
 	//Construtor
-	public Area(String name) {
-		name = nome;
+	public Area(Atletica atletica) {
+		this.atletica = atletica;
 		diretores = new ArrayList<>();
 		saldoFinanceiro = 0.0; //inicializa o saldo da área como 0
 		membrosInteressados = new ArrayList<>();
 	}
 	
 	//getters e setters
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	
 	public ArrayList<Pessoa> getDiretores(){
 		return diretores;
@@ -44,6 +37,12 @@ public abstract class Area {
 	}
 	public void setMembrosInteressados(ArrayList<Pessoa> lista) {
 		this.membrosInteressados = lista;
+	}
+	public Atletica getAtletica() {
+		return atletica;
+	}
+	public void setAtletica(Atletica atletica) {
+		this.atletica = atletica;
 	}
 	
 	

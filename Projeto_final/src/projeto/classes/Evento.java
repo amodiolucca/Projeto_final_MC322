@@ -13,7 +13,8 @@ public class Evento {
 		this.nome = nome;
 		this.data = LocalDate.parse(data);
 		this.responsavel = responsavel;
-		this.lucro = 0;
+		this.lucro = 0.0;
+	}
 
 	public String getNome() {
 		return nome;

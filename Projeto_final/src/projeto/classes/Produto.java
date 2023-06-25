@@ -1,12 +1,9 @@
 package projeto.classes;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Produto {
-	
+	private Atletica atletica;
 	private String nome;
 	private int ID;
 	private double precoCompra;
@@ -17,7 +14,7 @@ public class Produto {
 	private int quantidadeVendida = 0;
 	private double lucro = 0.0;
 	
-	public Produto(String nome, int ID, double precoCompra, double precoVenda, String anoProducao) {
+	public Produto(Atletica atletica, String nome, int ID, double precoCompra, double precoVenda, String anoProducao) {
 		this.nome = nome;
 		this.ID = ID;
 		this.precoCompra = precoCompra;
@@ -83,12 +80,18 @@ public class Produto {
 	public void setLucro(double lucro) {
 		this.lucro = lucro;
 	}
+	public Atletica getAtletica() {
+		return atletica;
+	}
+	public void setAtletica(Atletica atletica) {
+		this.atletica = atletica;
+	}
 	
 	public boolean venderProduto(Item item) {
 		if(estoque.contains(item)) {
 			item.setQuantidadeDisponivel(item.getQuantidadeDisponivel()-1);
 			atualizarEstoque(item);
-			Caixa.gerarMovimentacao(precoVenda, "Venda do produto: "+this.getNome(), null , null); //ALTERAR!!!
+			atletica.getCaixa().gerarMovimentacao(precoVenda, "Venda do produto: "+this.getNome(), null , null); //ALTERAR!!!
 			//depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
 			//Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
 			
@@ -104,29 +107,8 @@ public class Produto {
 	}
 	
 	public boolean criarProduto(String path) {
-		String linha = "";
-		String separador = ";";
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(path));
-			while((linha = in.readLine())!= null) {
-				String[] dados = linha.split(separador);
-				if(!dados[0].equals("AAAECA")) {
-					Caixa.gerarMovimentacao(-precoCompra, "Compra do produto: "+this.getNome(), null , null);
-					encomenda.add(new Encomenda(dados[0], dados [1], new Item(dados[2])));
-				} else {
-					// TODO Repeticao de itens
-					Item item = new Item(dados[2]);
-					item.setQuantidadeDisponivel(Integer.parseInt(dados[3]));
-					estoque.add(item);
-					Caixa.gerarMovimentacao(-precoCompra*Integer.parseInt(dados[3]), "Venda do produto: "+this.getNome(), null , null);
-				}
-			}
-			in.close();
-			return true;
-		} catch(IOException ex) {
-			ex.printStackTrace();
-			return false;
-		}
+		ArquivoEncomenda arquivo = new ArquivoEncomenda(this);
+		return arquivo.lerArquivo(path);
 	}
 	
 

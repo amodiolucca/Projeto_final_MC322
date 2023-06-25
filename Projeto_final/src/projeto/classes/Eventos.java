@@ -3,11 +3,11 @@ package projeto.classes;
 import java.util.ArrayList;
 
 public class Eventos extends Area {
-	private static ArrayList<Evento> listaEventos;
+	private ArrayList<Evento> listaEventos;
 	
-	public Eventos(){
-		super("Eventos");
-		new ArrayList<Eventos>();
+	public Eventos(Atletica atletica){
+		super(atletica);
+		listaEventos = new ArrayList<>();
 	}
 	
 	public boolean registrarEvento(String nome, String data, Pessoa responsavel) {
@@ -23,7 +23,7 @@ public class Eventos extends Area {
 		for(Evento e: listaEventos) {
 			if(e.getNome().equals(nome)) {
 				e.setLucro(lucro);
-				Caixa.gerarMovimentacao(lucro, "Lucro da festa: "+e.getNome(),  , responsavel.getNome()); //ALTERAR!!!
+				super.getAtletica().getCaixa().gerarMovimentacao(lucro, "Lucro da festa: "+e.getNome(), this , responsavel); //ALTERAR!!!
 				//depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
 				//Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
 				
@@ -31,7 +31,6 @@ public class Eventos extends Area {
 		}
 				return true;
 			}
-		}
 		return false;
 	}
 }
