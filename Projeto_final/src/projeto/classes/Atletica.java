@@ -14,7 +14,7 @@ public class Atletica {
     public Atletica(String nome, String anoGestao, String path, Double saldoInicioGestao) {
         this.nome = nome;
         this.anoGestao = anoGestao;
-        areas = new ArrayList<Area>(); // TODO Pensar em como já inicializar as areas no construtor para falicitar a instanciação
+        areas = new ArrayList<Area>();
         iniciarAreas();
         integrantes = new HashMap<>();
         if (leituraIntegrantes(path)) {
@@ -89,7 +89,6 @@ public class Atletica {
         this.caixa = caixa;
     }
 
-    // TODO Esse método só será chamado para uma movimentação de compra (Coloquei valores aleatórios, devemos mudar para adequar a realidade)
     public boolean validarMovimentacao(Pessoa usuario, Double valorMovimentacao){
         String cargoDoUsuario;
         if (usuario instanceof Presidente) {
@@ -102,10 +101,12 @@ public class Atletica {
         } else {
             cargoDoUsuario = usuario.getClass().getSimpleName();
         }
-
-        // Presidente teoricamente deve possuir o direto de gerar uma movimentação de qualquer valor que tenha no caixar (TODO)
-        return cargoDoUsuario.equals("Presidente") || (cargoDoUsuario.equals("Vice-Presidente") && valorMovimentacao <= 1000.0) ||
-                (cargoDoUsuario.equals("Diretor") && valorMovimentacao <= 800.0) || (cargoDoUsuario.equals("Conselheiro") && valorMovimentacao <= 500.0) ||
+        if (valorMovimentacao > this.getCaixa().getSaldoAtual()){
+            return false;
+        }
+        return  (cargoDoUsuario.equals("Presidente") || (cargoDoUsuario.equals("Vice-Presidente"))) ||  // Presidente/vice podem retirar todo o valor
+                (cargoDoUsuario.equals("Diretor") && valorMovimentacao <= 800.0) ||
+                (cargoDoUsuario.equals("Conselheiro") && valorMovimentacao <= 500.0) ||
                 (cargoDoUsuario.equals("Membro") && valorMovimentacao <= 200.0);
     }
 

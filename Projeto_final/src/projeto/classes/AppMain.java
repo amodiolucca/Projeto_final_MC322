@@ -3,7 +3,7 @@ package projeto.classes;
 public class AppMain {
     public static void main(String args[]) {
         // Instancia um objeto da classe Altletica referente a gestão que terá o sistema de gerenciamento simulado
-        Atletica atleticaECA23 = new Atletica("AAAECA", "2023",".//src/projeto/classes/dadosIntegrantes.csv", 500.00);
+        Atletica atleticaECA23 = new Atletica("AAAECA", "2023","Projeto_final_MC322\\Projeto_final\\src\\projeto\\classes\\dadosIntegrantes.csv", 500.00);
         //TESTE - APAGAR
         System.out.println(atleticaECA23.getIntegrantes().size());
         Area eventos = atleticaECA23.getArea("Eventos");

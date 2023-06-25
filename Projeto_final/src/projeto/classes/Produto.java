@@ -87,13 +87,11 @@ public class Produto {
 		this.atletica = atletica;
 	}
 	
-	public boolean venderProduto(Item item) {
+	public boolean venderProduto(Item item, Pessoa pessoa) {
 		if(estoque.contains(item)) {
 			item.setQuantidadeDisponivel(item.getQuantidadeDisponivel()-1);
 			atualizarEstoque(item);
-			atletica.getCaixa().gerarMovimentacao(precoVenda, "Venda do produto: "+this.getNome(), null , null); //ALTERAR!!!
-			//depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
-			//Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
+			atletica.getCaixa().gerarMovimentacao(precoVenda, "Venda do produto: "+this.getNome(), atletica.getArea("Produtos"), pessoa); 
 			
 			return true;
 		}
