@@ -41,4 +41,13 @@ public class Produtos extends Area {
         }    
         return false;
     }
+    
+    public Produto buscaProdutoPeloNome(String nomeProduto) {
+        for (Produto p : listaProdutos) {
+            if (p.getNome().equals(nomeProduto)) {
+                return p;
+            }
+        }    
+        return null;
+    }
 }

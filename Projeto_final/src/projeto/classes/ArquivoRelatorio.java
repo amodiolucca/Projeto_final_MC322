@@ -6,7 +6,7 @@ import java.io.BufferedWriter;
 
 public class ArquivoRelatorio {
     
-    private Caixa caixa;
+    private final Caixa caixa;
 
     public ArquivoRelatorio(Caixa caixa) {
         this.caixa = caixa;

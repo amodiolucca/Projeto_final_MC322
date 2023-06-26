@@ -117,11 +117,11 @@ public class Produto {
             this.pathEncomendas = pathEncomendas;
     }
 
-    public boolean venderProduto(Item item, Pessoa pessoa) {
+    public boolean venderProduto(Item item, Pessoa pessoa, int quantidade) {
         if(estoque.contains(item)) {
-            item.setQuantidadeDisponivel(item.getQuantidadeDisponivel()-1);
+            item.setQuantidadeDisponivel(item.getQuantidadeDisponivel() - quantidade);
             atualizarEstoque(item);
-            atletica.getCaixa().gerarMovimentacao(precoVenda, "Venda do produto: "+this.getNome(), atletica.getArea("Produtos"), pessoa); 
+            atletica.getCaixa().gerarMovimentacao(precoVenda * quantidade, "Venda de " + quantidade +" unidade(s) do produto: " + this.getNome(), atletica.getArea("Produtos"), pessoa); 
             return true;
         }
         return false;

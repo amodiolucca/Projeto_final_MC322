@@ -6,12 +6,13 @@ import java.io.IOException;
 
 public class ArquivoIntegrantes implements leituraDados {
     
-    private Atletica atletica;
+    private final Atletica atletica;
 
     public ArquivoIntegrantes(Atletica atletica) {
         this.atletica = atletica;
     }
 
+    @Override
     public boolean lerArquivo(String path) {
         String linha = "";
         String separador = ",";
@@ -33,7 +34,6 @@ public class ArquivoIntegrantes implements leituraDados {
                 switch (cargoIntegrante) {
                     case "Membro":
                         Membro membro = new Membro(raIntegrante, nomeIntegrante, telefoneIntegrante, senhaIntegrante);
-                        
                         atletica.insereMembroArea(areaIntegrante, membro);
                         atletica.getIntegrantes().put(raIntegrante, membro);
                         break;
@@ -52,7 +52,7 @@ public class ArquivoIntegrantes implements leituraDados {
                         break;
                     case "Conselheiro":
                         Conselheiro conselheiro = new Conselheiro(raIntegrante, nomeIntegrante, telefoneIntegrante, areaIntegrante,senhaIntegrante);
-                        conselheiro.setAreaAnterior(areaIntegrante);
+                        atletica.insereConselheiroArea(areaIntegrante, conselheiro);
                         atletica.getIntegrantes().put(raIntegrante,conselheiro);
                         break;
                     default:

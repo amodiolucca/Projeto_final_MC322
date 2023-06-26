@@ -3,6 +3,7 @@ package projeto.classes;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuOperacoes extends javax.swing.JFrame {
@@ -301,9 +302,18 @@ public class MenuOperacoes extends javax.swing.JFrame {
 
         botaoRegistrarVenda.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         botaoRegistrarVenda.setText("Registrar Venda");
+        botaoRegistrarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRegistrarVendaActionPerformed(evt);
+            }
+        });
+
+        statusVenda.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
 
         jLabel23.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel23.setText("Quantidade disponível");
+
+        labelQuantidadeDisponivelProduto.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
 
         jLabel24.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel24.setText("Quantidade");
@@ -337,38 +347,36 @@ public class MenuOperacoes extends javax.swing.JFrame {
                                 .addComponent(areasMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(65, 65, 65)
                                 .addComponent(botaoGerarMovimentacao))))
-                    .addGroup(movimentacaoLayout.createSequentialGroup()
-                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(movimentacaoLayout.createSequentialGroup()
-                                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(movimentacaoLayout.createSequentialGroup()
-                                        .addComponent(jLabel20)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(produtosEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(movimentacaoLayout.createSequentialGroup()
-                                        .addComponent(jLabel24)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(quantidadeProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(28, 28, 28)
-                                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(movimentacaoLayout.createSequentialGroup()
-                                        .addComponent(jLabel21)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(labelPrecoCompraProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(movimentacaoLayout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(labelQuantidadeDisponivelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel22))
-                            .addComponent(movimentacaoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(movimentacaoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(movimentacaoLayout.createSequentialGroup()
                         .addComponent(botaoRegistrarVenda)
                         .addGap(45, 45, 45)
-                        .addComponent(statusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addComponent(statusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(movimentacaoLayout.createSequentialGroup()
+                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLabel24)
+                                .addGap(18, 18, 18)
+                                .addComponent(quantidadeProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelQuantidadeDisponivelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(produtosEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelPrecoCompraProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         movimentacaoLayout.setVerticalGroup(
             movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,37 +396,35 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(areasMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(movimentacaoLayout.createSequentialGroup()
                         .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoGerarMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(movimentacaoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(movimentacaoLayout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(jLabel18)
-                                .addGap(27, 27, 27)
-                                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelPrecoCompraProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(produtosEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(movimentacaoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel18)
+                        .addGap(27, 27, 27)
+                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(produtosEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelQuantidadeDisponivelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(quantidadeProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botaoRegistrarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(movimentacaoLayout.createSequentialGroup()
+                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelQuantidadeDisponivelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(quantidadeProdutoVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botaoRegistrarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(statusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelPrecoCompraProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
@@ -787,6 +793,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoTelaGerarMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTelaGerarMovimentacaoActionPerformed
+        preencheComboBoxProdutoEstoque();
         telasOperacoes.setSelectedIndex(0);
     }//GEN-LAST:event_botaoTelaGerarMovimentacaoActionPerformed
 
@@ -869,23 +876,23 @@ public class MenuOperacoes extends javax.swing.JFrame {
 
         switch (selection) {
             case 0: // Esportes
-            areaSelecionada = atleticaRegistrada.getArea("Esportes");
-            break;
+                areaSelecionada = atleticaRegistrada.getArea("Esportes");
+                break;
             case 1: // Eventos
-            areaSelecionada = atleticaRegistrada.getArea("Eventos");
-            break;
+                areaSelecionada = atleticaRegistrada.getArea("Eventos");
+                break;
             case 2: // Financeiro
-            areaSelecionada = atleticaRegistrada.getArea("Financeiro");
-            break;
+                areaSelecionada = atleticaRegistrada.getArea("Financeiro");
+                break;
             case 3: // Social
-            areaSelecionada = atleticaRegistrada.getArea("Social");
-            break;
+                areaSelecionada = atleticaRegistrada.getArea("Social");
+                break;
             case 4: // Produtos
-            areaSelecionada = atleticaRegistrada.getArea("Produtos");
-            break;
+                areaSelecionada = atleticaRegistrada.getArea("Produtos");
+                break;
             default: // ERRO: Area não encontrada na instância de atlética
-            areaSelecionada = null;
-            break;
+                areaSelecionada = null;
+                break;
         }
 
         if (areaSelecionada != null) {
@@ -895,7 +902,28 @@ public class MenuOperacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_areasExtratoActionPerformed
 
     private void produtosEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosEstoqueActionPerformed
-        // TODO add your handling code here:
+        String produtoEscolhido;
+        
+        try { // Trata a exceção para a escolha de produtoEscolhido pela comboBox produtosEstoque
+            produtoEscolhido = produtosEstoque.getSelectedItem().toString();
+        } catch(NumberFormatException ex) {
+            System.out.println("Produto não encontrado!");
+            return;
+        }
+        
+        String[] informacoes = produtoEscolhido.split(" - ");
+        String nomeProduto = informacoes[0];
+        String tamanhoProduto = informacoes[1];
+        
+        Area area = atleticaRegistrada.getArea("Produtos");
+        Produtos areaProdutosAtletica = (Produtos) area; // Downcast
+        
+        Produto escolhido = areaProdutosAtletica.buscaProdutoPeloNome(nomeProduto);
+        labelPrecoVendaProduto.setText(String.format("%.2f", escolhido.getPrecoVenda()));
+        labelPrecoCompraProduto.setText(String.format("%.2f", escolhido.getPrecoCompra()));
+        
+        Item itemEscolhido = escolhido.buscarItem(tamanhoProduto);
+        labelQuantidadeDisponivelProduto.setText(String.format("%d", itemEscolhido.getQuantidadeDisponivel()));
     }//GEN-LAST:event_produtosEstoqueActionPerformed
 
     private void botaoGerarMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarMovimentacaoActionPerformed
@@ -977,6 +1005,53 @@ public class MenuOperacoes extends javax.swing.JFrame {
             statusRetirada.setText("ERRO: Há campos não preenchidos!");
         }
     }//GEN-LAST:event_botaoRegistrarRetiradaActionPerformed
+
+    private void botaoRegistrarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarVendaActionPerformed
+        if (!quantidadeProdutoVenda.getText().isEmpty()) {
+            
+            int numericoQuantidadeProdutoVenda;
+
+            try { // Trata a exceção para a entrada de quantidadeProdutoVenda diferente de int
+                numericoQuantidadeProdutoVenda = Integer.parseInt(quantidadeProdutoVenda.getText());
+            } catch(NumberFormatException ex) {
+                statusVenda.setForeground(Color.red);
+                statusVenda.setText("ERRO: Campo Quantidade preenchido com formato inválido!");
+                return;
+            }
+            
+            int quantidadeDisponivel;
+            
+            try { // Trata a exceção para a tentatica de ler o valor de quantidade disponivel apresentado na labelQuantidadeDisponivelProduto 
+                quantidadeDisponivel = Integer.parseInt(labelQuantidadeDisponivelProduto.getText());
+            } catch(NumberFormatException ex) {
+                statusVenda.setForeground(Color.red);
+                statusVenda.setText("ERRO: Produto não selecionado!");
+                return;
+            }
+            
+            if (numericoQuantidadeProdutoVenda <= quantidadeDisponivel && numericoQuantidadeProdutoVenda > 0) {
+                String produtoEscolhido = produtosEstoque.getSelectedItem().toString();
+                String[] informacoes = produtoEscolhido.split(" - ");
+                String nomeProduto = informacoes[0];
+                String tamanhoProduto = informacoes[1];
+                Area area = atleticaRegistrada.getArea("Produtos");
+                Produtos areaProdutosAtletica = (Produtos) area; // Downcast
+                Produto escolhido = areaProdutosAtletica.buscaProdutoPeloNome(nomeProduto);
+                Item itemEscolhido = escolhido.buscarItem(tamanhoProduto);
+                escolhido.venderProduto(itemEscolhido, usuarioLogado, numericoQuantidadeProdutoVenda);
+                labelQuantidadeDisponivelProduto.setText(String.format("%d", itemEscolhido.getQuantidadeDisponivel()));
+                statusVenda.setForeground(Color.green);
+                statusVenda.setText("Venda registrada com sucesso!");
+            } else {
+                statusVenda.setForeground(Color.red);
+                statusVenda.setText("ERRO: Quantidade de produtos solicitada inválida!");
+            }
+            
+        } else {
+            statusVenda.setForeground(Color.red);
+            statusVenda.setText("ERRO: Há campos não preenchidos!");
+        }
+    }//GEN-LAST:event_botaoRegistrarVendaActionPerformed
     
     private void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -1000,6 +1075,23 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 dadosLinha[4] = i.getTamanho();
                 dadosLinha[5] = i.getQuantidadeDisponivel();
                 model.addRow(dadosLinha);
+            }
+        }
+    }
+    
+    private void preencheComboBoxProdutoEstoque() {
+        
+        Area area = atleticaRegistrada.getArea("Produtos");
+        Produtos areaProdutosAtletica = (Produtos) area; // Downcast
+        String itemComboBox;
+        
+        for (Produto p : areaProdutosAtletica.getListaProdutos()) {
+            for (Item i : p.getEstoque()) {
+                itemComboBox = p.getNome();
+                itemComboBox += " - " + i.getTamanho();
+                if(((DefaultComboBoxModel)produtosEstoque.getModel()).getIndexOf(itemComboBox) == -1) {
+                    produtosEstoque.addItem(itemComboBox);
+                }
             }
         }
     }

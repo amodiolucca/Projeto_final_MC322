@@ -54,6 +54,21 @@ public class Atletica {
         return integrantes;
     }
 
+    public ArrayList<Area> getAreas() {
+        return areas;
+    }
+    public void setAreas(ArrayList<Area> areas) {
+        this.areas = areas;
+    }
+    
+    public Caixa getCaixa() {
+        return caixa;
+    }
+    
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
+    }
+    
     public boolean registraUsuario(Pessoa usuario) {
         if (!integrantes.containsKey(usuario.getRa())) {
             integrantes.put(usuario.getRa(), usuario);
@@ -72,21 +87,6 @@ public class Atletica {
 
     public boolean verificaLoginSistema(String raUsuario, String senhaUsuario) {
         return integrantes.containsKey(raUsuario) && integrantes.get(raUsuario).getSenha().equals(senhaUsuario);
-    }
-
-    public ArrayList<Area> getAreas() {
-        return areas;
-    }
-    public void setAreas(ArrayList<Area> areas) {
-        this.areas = areas;
-    }
-    
-    public Caixa getCaixa() {
-        return caixa;
-    }
-    
-    public void setCaixa(Caixa caixa) {
-        this.caixa = caixa;
     }
 
     public boolean validarMovimentacao(Pessoa usuario, Double valorMovimentacao){
@@ -126,11 +126,17 @@ public class Atletica {
         areaInteresse.adicionarMembro(membro);
         membro.getAreasDeInteresse().add(textoArea);
     }
+    
     public void insereDiretorArea(String textoArea, Diretor diretor) {
     	Area areaInteresse = getArea(textoArea);
         areaInteresse.adicionarDiretor(diretor);
         diretor.setArea(textoArea);
     }
     
+    public void insereConselheiroArea(String textoArea, Conselheiro conselheiro) {
+    	Area areaInteresse = getArea(textoArea);
+        areaInteresse.adicionarConselheiro(conselheiro);
+        conselheiro.setAreaAnterior(textoArea);
+    }
 }
 
