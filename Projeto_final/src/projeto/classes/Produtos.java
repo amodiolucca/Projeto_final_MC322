@@ -15,7 +15,7 @@ public class Produtos extends Area {
         return listaProdutos;
     }
     
-    public void setListaEncomendas(ArrayList<Produto> listaProdutos) {
+    public void setListaProdutos(ArrayList<Produto> listaProdutos) {
         this.listaProdutos = listaProdutos;
     }
     

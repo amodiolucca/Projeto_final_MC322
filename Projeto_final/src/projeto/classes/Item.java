@@ -1,6 +1,6 @@
 package projeto.classes;
 
-ublic class Item {
+public class Item {
 	
     private String tamanho;
     private int quantidadeDisponivel;

@@ -62,7 +62,15 @@ public abstract class Area {
 
     public boolean adicionarMembro(Pessoa pessoa) {
         if(!membrosInteressados.contains(pessoa)) {
+        	
             return membrosInteressados.add(pessoa);
+        }
+        return false;
+    }
+    public boolean adicionarDiretor(Pessoa pessoa) {
+        if(!diretores.contains(pessoa)) {
+        	
+            return diretores.add(pessoa);
         }
         return false;
     }

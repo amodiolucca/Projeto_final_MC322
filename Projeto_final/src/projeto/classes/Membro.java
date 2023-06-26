@@ -19,4 +19,8 @@ public class Membro extends Pessoa {
     public void setAreasDeInteresse(ArrayList<String> lista) {
         this.areasDeInteresse = lista;
     }
+    
+    public void adicionarAreaInteresse(String area) {
+    	areasDeInteresse.add(area);
+    }
 }

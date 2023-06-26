@@ -121,9 +121,15 @@ public class Atletica {
     	return null;
     }
     
-    public void inserePessoaArea(String textoArea, Pessoa integrante) {
+    public void insereMembroArea(String textoArea, Membro membro) {
         Area areaInteresse = getArea(textoArea);
-        areaInteresse.adicionarMembro(integrante);
+        areaInteresse.adicionarMembro(membro);
+        membro.getAreasDeInteresse().add(textoArea);
+    }
+    public void insereDiretorArea(String textoArea, Diretor diretor) {
+    	Area areaInteresse = getArea(textoArea);
+        areaInteresse.adicionarDiretor(diretor);
+        diretor.setArea(textoArea);
     }
     
 }

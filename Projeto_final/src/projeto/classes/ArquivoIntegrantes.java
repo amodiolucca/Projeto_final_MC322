@@ -33,13 +33,13 @@ public class ArquivoIntegrantes implements leituraDados {
                 switch (cargoIntegrante) {
                     case "Membro":
                         Membro membro = new Membro(raIntegrante, nomeIntegrante, telefoneIntegrante, senhaIntegrante);
-                        membro.getAreasDeInteresse().add(areaIntegrante);
-                        atletica.inserePessoaArea(areaIntegrante, membro);
+                        
+                        atletica.insereMembroArea(areaIntegrante, membro);
                         atletica.getIntegrantes().put(raIntegrante, membro);
                         break;
                     case "Diretor":
                         Diretor diretor = new Diretor(raIntegrante, nomeIntegrante, telefoneIntegrante, areaIntegrante,senhaIntegrante);
-                        atletica.inserePessoaArea(areaIntegrante, diretor);
+                        atletica.insereDiretorArea(areaIntegrante, diretor);
                         atletica.getIntegrantes().put(raIntegrante,diretor);
                         break;
                     case "Presidente":
@@ -52,7 +52,7 @@ public class ArquivoIntegrantes implements leituraDados {
                         break;
                     case "Conselheiro":
                         Conselheiro conselheiro = new Conselheiro(raIntegrante, nomeIntegrante, telefoneIntegrante, areaIntegrante,senhaIntegrante);
-                        atletica.inserePessoaArea(areaIntegrante, conselheiro);
+                        conselheiro.setAreaAnterior(areaIntegrante);
                         atletica.getIntegrantes().put(raIntegrante,conselheiro);
                         break;
                     default:

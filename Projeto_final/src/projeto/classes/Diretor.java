@@ -17,4 +17,5 @@ public class Diretor extends Pessoa {
     public void setArea(String area) {
         this.area = area;
     }
+    
 }

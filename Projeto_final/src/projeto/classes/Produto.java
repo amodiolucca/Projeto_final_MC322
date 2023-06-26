@@ -17,7 +17,8 @@ public class Produto {
     private double lucro = 0.0;
 
     public Produto(Atletica atletica, String nome, int ID, double precoCompra, double precoVenda, String anoProducao, String pathEncomendas) {
-        this.nome = nome;
+        this.atletica = atletica;
+    	this.nome = nome;
         this.ID = ID;
         this.precoCompra = precoCompra;
         this.precoVenda = precoVenda;
