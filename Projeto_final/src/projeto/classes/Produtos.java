@@ -22,11 +22,13 @@ public class Produtos extends Area {
     //O ID do produto será o número de produtos anterior. Ou seja, o ID é sequencial iniciando em 0
     public boolean novoProduto(MenuOperacoes menu, String nome, double precoCompra, double precoVenda, String anoProducao, String path) {
         Produto p = new Produto(super.getAtletica(), nome, listaProdutos.size(), precoCompra, precoVenda, anoProducao, path);
-        if (!listaProdutos.contains(p)) {
-            listaProdutos.add(p);
-            return p.receberEncomendas(menu);
+        for (Produto produto: listaProdutos) {
+            if(produto.getPathEncomendas().equals(path)) {
+            	return false;
+            }
         }
-        return false;
+        listaProdutos.add(p);
+        return p.receberEncomendas(menu);
     }
     
     public boolean encomendaRetirada(String nomeProduto, String telefone) {

@@ -25,9 +25,6 @@ public class Esportes extends Area {
             if(copa.getNome().equals(nome)) {
                 copa.setLucro(saldo);
                 super.getAtletica().getCaixa().gerarMovimentacao(saldo, "Lucro da copa: "+copa.getNome(), this , responsavel);
-                //depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
-                //Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
-
                 return true;
             }
         }

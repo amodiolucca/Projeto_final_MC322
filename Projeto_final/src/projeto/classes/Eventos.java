@@ -22,9 +22,7 @@ public class Eventos extends Area {
     
     public boolean resultadoEvento(String nome, double lucro, Evento e) {
         e.setLucro(lucro);
-        return super.getAtletica().getCaixa().gerarMovimentacao(lucro, "Lucro da festa: "+e.getNome(), this , e.getResponsavel()); //ALTERAR!!!
-        //depois da implementação de Produtos, colocar Produtos no primeiro null e a Pessoa buscada pelo RA na lista de Pessoas no segundo null
-        //Fiz um getRA no Menu pra pegar o RA do usuario e buscar na lista de Pessoas
+        return super.getAtletica().getCaixa().gerarMovimentacao(lucro, "Lucro da festa: "+e.getNome(), this , e.getResponsavel()); 
     }
 
     public Evento getEvento(String nome) {
