@@ -101,9 +101,6 @@ public class Atletica {
         } else {
             cargoDoUsuario = usuario.getClass().getSimpleName();
         }
-        if (valorMovimentacao > this.getCaixa().getSaldoAtual()){
-            return false;
-        }
         return  (cargoDoUsuario.equals("Presidente") || (cargoDoUsuario.equals("Vice-Presidente"))) ||  // Presidente/vice podem retirar todo o valor
                 (cargoDoUsuario.equals("Diretor") && valorMovimentacao <= 800.0) ||
                 (cargoDoUsuario.equals("Conselheiro") && valorMovimentacao <= 500.0) ||
@@ -112,16 +109,22 @@ public class Atletica {
 
     private boolean leituraIntegrantes(String path) {
     	ArquivoIntegrantes arquivo = new ArquivoIntegrantes(this);
-		return arquivo.lerArquivo(path);
-        
+        return arquivo.lerArquivo(path);
     }
+    
     public Area getArea(String area) {
     	for(Area a: areas) {
-    		if(a.getNome().equals(area)) {
-    			return a;
-    		}
+            if(a.getNome().equals(area)) {
+                return a;
+            }
     	}
     	return null;
     }
+    
+    public void inserePessoaArea(String textoArea, Pessoa integrante) {
+        Area areaInteresse = getArea(textoArea);
+        areaInteresse.adicionarMembro(integrante);
+    }
+    
 }
 

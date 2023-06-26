@@ -1,6 +1,5 @@
 package projeto.classes;
 
-
 public class Conselheiro extends Pessoa {
 	
 	private String areaAnterior;

@@ -1,57 +1,56 @@
 package projeto.classes;
 
 public class Encomenda {
-	private boolean retirada;
-	private String nomeCliente;
-	private String telefoneCliente;
-	private Item pedido;
-	
-	public Encomenda(String nomeCliente, String telefoneCliente, Item pedido) {
-		this.nomeCliente = nomeCliente;
-		this.telefoneCliente = telefoneCliente;
-		this.pedido = pedido;
-		this.retirada = false;
-	}
+    
+    private boolean retirada;
+    private String nomeCliente;
+    private String telefoneCliente;
+    private Item pedido;
 
-	public boolean getRetirada() {
-		return retirada;
-	}
+    public Encomenda(String nomeCliente, String telefoneCliente, Item pedido) {
+        this.nomeCliente = nomeCliente;
+        this.telefoneCliente = telefoneCliente;
+        this.pedido = pedido;
+        this.retirada = false;
+    }
 
-	public void setRetirada(boolean retirada) {
-		this.retirada = retirada;
-	}
+    public boolean getRetirada() {
+        return retirada;
+    }
 
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
+    public void setRetirada(boolean retirada) {
+        this.retirada = retirada;
+    }
 
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
-	}
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
 
-	public String getTelefoneCliente() {
-		return telefoneCliente;
-	}
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
 
-	public void setTelefoneCliente(String telefoneCliente) {
-		this.telefoneCliente = telefoneCliente;
-	}
+    public String getTelefoneCliente() {
+        return telefoneCliente;
+    }
 
-	public Item getPedido() {
-		return pedido;
-	}
+    public void setTelefoneCliente(String telefoneCliente) {
+        this.telefoneCliente = telefoneCliente;
+    }
 
-	public void setPedido(Item pedido) {
-		this.pedido = pedido;
-	}
-	
-	public boolean registrarRetirada() {
-		if(retirada == false) {
-			retirada = true;
-			return true;
-		}
-		return false;
-	}
-	
-	
+    public Item getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Item pedido) {
+        this.pedido = pedido;
+    }
+
+    public boolean registrarRetirada() {      
+        if (retirada == false) {
+            retirada = true;
+            return true;
+        }
+        return false;
+    }
 }

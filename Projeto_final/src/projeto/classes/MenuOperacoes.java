@@ -3,14 +3,13 @@ package projeto.classes;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuOperacoes extends javax.swing.JFrame {
     
-    private Atletica atleticaRegistrada; // Referência a instância de Atletica para o qual a GUI de MenuOperacoes se refere
-    private Pessoa usuarioLogado; // Referência a instância de Pessoa associada ao usuário logado
-    
+    private final Atletica atleticaRegistrada; // Referência a instância de Atletica para o qual a GUI de MenuOperacoes se refere
+    private final Pessoa usuarioLogado; // Referência a instância de Pessoa do usuário do sistema logado no momento
+    private String pathEncomendasProduto;
     
     /**
      * Creates new form MenuOperacoes
@@ -23,51 +22,13 @@ public class MenuOperacoes extends javax.swing.JFrame {
         labelCargoAreaUsuarioLogado.setText("Cargo do usuário: " + usuario.getClass().getSimpleName());
         atleticaRegistrada = atleticaECA;
         usuarioLogado = usuario;
-        
+        pathEncomendasProduto = "";
     }
     
-    public Pessoa getUsuario(){
-    	return usuarioLogado;
+    // Getter usuarioLogado
+    public Pessoa getUsuarioLogado(){
+        return usuarioLogado;
     }
-    
-    // ********* APAGAR ESSA, APENAS TESTANDO O USO DO SCROLLPANE COM TABLE 
-    public class teste {
-        public String nome;
-        public int id;
-        public double precoCompra;
-        public double precoVenda;
-        public String tamanho;
-        public int solicitada;
-        public int disponivel;
-        
-        public teste(String nome, int id, double precoCompra, double precoVenda, String tamanho, int solicitada, int disponivel) {
-            this.nome = nome;
-            this.id = id;
-            this. precoCompra = precoCompra;
-            this.precoVenda = precoVenda;
-            this.tamanho = tamanho;
-            this.solicitada = solicitada;
-            this.disponivel = disponivel;
-        }
-    }
-    
-    public ArrayList lista() {
-        ArrayList<teste> listaTeste = new ArrayList<>();
-        teste a1 = new teste("Camiseta Preta", 1, 36.95, 70.50, "M", 50, 12);
-        teste a2 = new teste("Shorts Marrom", 2, 20.66, 40.00, "Baby G", 15, 15);
-        teste a3 = new teste("Moletom", 3, 99.99, 150.00, "M", 73, 2);
-        teste a4 = new teste("Camiseta Preta", 4, 36.95, 70.50, "G", 34, 21);
-        teste a5 = new teste("Tirante", 5, 13.45, 25.60, "-", 100, 43);
-        teste a6 = new teste("Caneca", 6, 48.95, 60.50, "-", 150, 24);
-        listaTeste.add(a1);
-        listaTeste.add(a2);
-        listaTeste.add(a3);
-        listaTeste.add(a4);
-        listaTeste.add(a5);
-        listaTeste.add(a6);
-        return listaTeste;
-    }
-    // ********* APAGAR ESSA, APENAS TESTANDO O USO DO SCROLLPANE COM TABLE  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,13 +43,13 @@ public class MenuOperacoes extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         botaoTelaGerarMovimentacao = new javax.swing.JButton();
         botaoTelaGerarRelatorio = new javax.swing.JButton();
-        botaoTelaOperacoesEncomendas = new javax.swing.JButton();
         botaoTelaVisualizarEstoque = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         labelUsuarioLogado = new javax.swing.JLabel();
         botaoSairUsuario = new javax.swing.JButton();
         labelCargoAreaUsuarioLogado = new javax.swing.JLabel();
+        botaoCadastrarProduto = new javax.swing.JButton();
         telasOperacoes = new javax.swing.JTabbedPane();
         movimentacao = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -132,23 +93,37 @@ public class MenuOperacoes extends javax.swing.JFrame {
         labelMembrosArea = new javax.swing.JLabel();
         labelSaldoArea = new javax.swing.JLabel();
         botaoGerarRelatorio = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        escolheArquivoEncomenda = new javax.swing.JFileChooser();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         telefoneClienteRetirada = new javax.swing.JTextField();
         botaoRegistrarRetirada = new javax.swing.JButton();
         statusRetirada = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        nomeProdutoRetirada = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         scrollVisualizarEstoque = new javax.swing.JScrollPane();
         tabelaEstoque = new javax.swing.JTable();
         jLabel19 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        anoProducaoProduto = new javax.swing.JTextField();
+        precoVendaProduto = new javax.swing.JTextField();
+        precoCompraProduto = new javax.swing.JTextField();
+        nomeProduto = new javax.swing.JTextField();
+        botaoCadastrarNovoProduto = new javax.swing.JButton();
+        escolheArquivoEncomenda = new javax.swing.JFileChooser();
+        jLabel30 = new javax.swing.JLabel();
+        statusCadastrarProduto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Operações - Sistema de Gerenciamento AAAECA");
         setName("telaMenu"); // NOI18N
-     
+        setResizable(false);
+
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
         botaoTelaGerarMovimentacao.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
@@ -164,14 +139,6 @@ public class MenuOperacoes extends javax.swing.JFrame {
         botaoTelaGerarRelatorio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTelaGerarRelatorioActionPerformed(evt);
-            }
-        });
-
-        botaoTelaOperacoesEncomendas.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        botaoTelaOperacoesEncomendas.setText("Operações Encomendas");
-        botaoTelaOperacoesEncomendas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoTelaOperacoesEncomendasActionPerformed(evt);
             }
         });
 
@@ -204,6 +171,14 @@ public class MenuOperacoes extends javax.swing.JFrame {
         labelCargoAreaUsuarioLogado.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         labelCargoAreaUsuarioLogado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        botaoCadastrarProduto.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        botaoCadastrarProduto.setText("Cadastrar Produto");
+        botaoCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,17 +192,17 @@ public class MenuOperacoes extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelUsuarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoTelaGerarMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoTelaGerarMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
                             .addComponent(botaoTelaGerarRelatorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botaoTelaOperacoesEncomendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(botaoTelaVisualizarEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelCargoAreaUsuarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel1)))
+                            .addComponent(labelCargoAreaUsuarioLogado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botaoCadastrarProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -246,22 +221,31 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(botaoTelaGerarRelatorio)
                 .addGap(18, 18, 18)
-                .addComponent(botaoTelaOperacoesEncomendas)
-                .addGap(18, 18, 18)
                 .addComponent(botaoTelaVisualizarEstoque)
-                .addGap(60, 60, 60)
+                .addGap(18, 18, 18)
+                .addComponent(botaoCadastrarProduto)
+                .addGap(61, 61, 61)
                 .addComponent(botaoSairUsuario)
                 .addGap(39, 39, 39))
         );
 
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jLabel3.setText("Valor R$");
+        jLabel3.setText("Valor (R$)");
 
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         jLabel4.setText("Descrição");
 
         areasMovimentacao.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         areasMovimentacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esportes", "Eventos", "Financeiro", "Social", "Produtos" }));
+        areasMovimentacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                areasMovimentacaoActionPerformed(evt);
+            }
+        });
+
+        valorMovimentacao.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        descricaoMovimentacao.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
 
         grupoVendaCompra.add(radioCompra);
         radioCompra.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
@@ -354,9 +338,8 @@ public class MenuOperacoes extends javax.swing.JFrame {
                                 .addGap(65, 65, 65)
                                 .addComponent(botaoGerarMovimentacao))))
                     .addGroup(movimentacaoLayout.createSequentialGroup()
-                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(movimentacaoMensagem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, movimentacaoLayout.createSequentialGroup()
+                        .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
                                 .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(movimentacaoLayout.createSequentialGroup()
                                         .addComponent(jLabel20)
@@ -375,9 +358,10 @@ public class MenuOperacoes extends javax.swing.JFrame {
                                     .addGroup(movimentacaoLayout.createSequentialGroup()
                                         .addComponent(jLabel23)
                                         .addGap(18, 18, 18)
-                                        .addComponent(labelQuantidadeDisponivelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel22)
+                                        .addComponent(labelQuantidadeDisponivelProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel22))
+                            .addComponent(movimentacaoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(movimentacaoLayout.createSequentialGroup()
@@ -403,24 +387,28 @@ public class MenuOperacoes extends javax.swing.JFrame {
                     .addComponent(descricaoMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(areasMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(movimentacaoLayout.createSequentialGroup()
                         .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(botaoGerarMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(movimentacaoMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel18)
-                        .addGap(27, 27, 27)
                         .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelPrecoCompraProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(produtosEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(areasMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelPrecoVendaProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel18)
+                                .addGap(27, 27, 27)
+                                .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelPrecoCompraProduto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(produtosEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(movimentacaoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
                 .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -431,7 +419,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addGroup(movimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botaoRegistrarVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(statusVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         telasOperacoes.addTab("movimentacao", movimentacao);
@@ -490,6 +478,29 @@ public class MenuOperacoes extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel16.setText("Registrar retirada de encomenda");
+
+        jLabel17.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel17.setText("Telefone do cliente:");
+
+        telefoneClienteRetirada.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        botaoRegistrarRetirada.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        botaoRegistrarRetirada.setText("Registrar Retirada");
+        botaoRegistrarRetirada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoRegistrarRetiradaActionPerformed(evt);
+            }
+        });
+
+        statusRetirada.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel15.setText("Nome do Produto");
+
+        nomeProdutoRetirada.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
         javax.swing.GroupLayout gerarRelatorioLayout = new javax.swing.GroupLayout(gerarRelatorio);
         gerarRelatorio.setLayout(gerarRelatorioLayout);
         gerarRelatorioLayout.setHorizontalGroup(
@@ -497,6 +508,15 @@ public class MenuOperacoes extends javax.swing.JFrame {
             .addGroup(gerarRelatorioLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(gerarRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addGroup(gerarRelatorioLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(telefoneClienteRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel15)
+                        .addGap(18, 18, 18)
+                        .addComponent(nomeProdutoRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(botaoGerarRelatorio)
                     .addGroup(gerarRelatorioLayout.createSequentialGroup()
                         .addGroup(gerarRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -530,7 +550,11 @@ public class MenuOperacoes extends javax.swing.JFrame {
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelMembrosArea, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel14))
+                    .addComponent(jLabel14)
+                    .addGroup(gerarRelatorioLayout.createSequentialGroup()
+                        .addComponent(botaoRegistrarRetirada)
+                        .addGap(18, 18, 18)
+                        .addComponent(statusRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         gerarRelatorioLayout.setVerticalGroup(
@@ -569,80 +593,25 @@ public class MenuOperacoes extends javax.swing.JFrame {
                         .addGroup(gerarRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelTotalMembros, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addComponent(botaoGerarRelatorio)
-                .addGap(291, 291, 291))
+                .addComponent(botaoGerarRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel16)
+                .addGap(18, 18, 18)
+                .addGroup(gerarRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefoneClienteRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomeProdutoRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(gerarRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoRegistrarRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125))
         );
 
         telasOperacoes.addTab("gerarRelatorio", gerarRelatorio);
 
-        escolheArquivoEncomenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                escolheArquivoEncomendaActionPerformed(evt);
-            }
-        });
-
-        jLabel15.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        jLabel15.setText("Receber encomendas - Arquivos .csv");
-
-        jLabel16.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
-        jLabel16.setText("Registrar retirada de encomenda");
-
-        jLabel17.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jLabel17.setText("Telefone do cliente:");
-
-        telefoneClienteRetirada.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
-
-        botaoRegistrarRetirada.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        botaoRegistrarRetirada.setText("Registrar Retirada");
-        botaoRegistrarRetirada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoRegistrarRetiradaActionPerformed(evt);
-            }
-        });
-
-        statusRetirada.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel15)
-                    .addComponent(escolheArquivoEncomenda, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(telefoneClienteRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(statusRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49)
-                        .addComponent(botaoRegistrarRetirada)))
-                .addContainerGap(158, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(escolheArquivoEncomenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel16)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefoneClienteRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRegistrarRetirada))
-                .addGap(18, 18, 18)
-                .addComponent(statusRetirada, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
-        telasOperacoes.addTab("operacoesEncomendas", jPanel4);
+        scrollVisualizarEstoque.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
 
         tabelaEstoque.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
         tabelaEstoque.setModel(new javax.swing.table.DefaultTableModel(
@@ -650,11 +619,11 @@ public class MenuOperacoes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "ID", "Preço Compra (R$)", "Preço Venda (R$)", "Tamanho", "Qtdd. Solicitada", "Qtdd. Disponível"
+                "Nome", "ID", "Preço Compra (R$)", "Preço Venda (R$)", "Tamanho", "Qtdd. Disponível"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -688,6 +657,114 @@ public class MenuOperacoes extends javax.swing.JFrame {
 
         telasOperacoes.addTab("visualizarEstoque", jPanel5);
 
+        jLabel25.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
+        jLabel25.setText("Cadastrar Novo Produto e suas Encomendas");
+
+        jLabel26.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel26.setText("Nome");
+
+        jLabel27.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel27.setText("Preço de Compra (R$)");
+
+        jLabel28.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel28.setText("Preço de Venda (R$)");
+
+        jLabel29.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel29.setText("Ano de Produção");
+
+        anoProducaoProduto.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        precoVendaProduto.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        precoCompraProduto.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        nomeProduto.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
+
+        botaoCadastrarNovoProduto.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        botaoCadastrarNovoProduto.setText("Cadastrar Produto");
+        botaoCadastrarNovoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarNovoProdutoActionPerformed(evt);
+            }
+        });
+
+        escolheArquivoEncomenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escolheArquivoEncomendaActionPerformed(evt);
+            }
+        });
+
+        jLabel30.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jLabel30.setText("Arquivo de Encomendas .csv do Produto");
+
+        statusCadastrarProduto.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel30)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(18, 18, 18)
+                        .addComponent(nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel27)
+                        .addGap(18, 18, 18)
+                        .addComponent(precoCompraProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(botaoCadastrarNovoProduto)
+                        .addGap(18, 18, 18)
+                        .addComponent(statusCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel25)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(escolheArquivoEncomenda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel28)
+                            .addGap(18, 18, 18)
+                            .addComponent(precoVendaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel29)
+                            .addGap(18, 18, 18)
+                            .addComponent(anoProducaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel25)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precoVendaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anoProducaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(precoCompraProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jLabel30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(escolheArquivoEncomenda, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCadastrarNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
+        );
+
+        telasOperacoes.addTab("cadastrarProduto", jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -695,8 +772,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(telasOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(telasOperacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 830, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -715,12 +791,12 @@ public class MenuOperacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoTelaGerarMovimentacaoActionPerformed
 
     private void botaoTelaGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTelaGerarRelatorioActionPerformed
-        // TODO Apresentamos os dados atualizados do Caixa da Atletica com duas casas decimais
-        labelSaldoInicio.setText(String.format("%.2f", atleticaRegistrada.getCaixa().getSaldoInicioGestao())); // String.format("%.2f", Atletica.Caixa.getSaldoInicioGestao())
-        labelSaldoAtual.setText(String.format("%.2f", atleticaRegistrada.getCaixa().getSaldoAtual())); // String.format("%.2f", Atletica.Caixa.getSaldoAtual())
-        labelBalanco.setText(String.format("%.2f", atleticaRegistrada.getCaixa().getBalanco())); // String.format("%.2f", Atletica.Caixa.getBalanco())
-        labelTotalMembros.setText(String.format("%d", atleticaRegistrada.getIntegrantes().size())); // String.valueOf(Atletica.getMembros().size())
-        
+        // Atualiza os valores das labels referentes ao parâmetros da instância atleticaRegistrada
+        labelSaldoInicio.setText(String.format("%.2f", atleticaRegistrada.getCaixa().getSaldoInicioGestao()));
+        labelSaldoAtual.setText(String.format("%.2f", atleticaRegistrada.getCaixa().getSaldoAtual()));
+        labelBalanco.setText(String.format("%.2f", atleticaRegistrada.getCaixa().getBalanco()));
+        labelTotalMembros.setText(String.format("%d", atleticaRegistrada.getIntegrantes().size()));
+        // Muda para a telaGerarRelatorio
         telasOperacoes.setSelectedIndex(1);
     }//GEN-LAST:event_botaoTelaGerarRelatorioActionPerformed
     
@@ -730,114 +806,177 @@ public class MenuOperacoes extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_botaoSairUsuarioActionPerformed
 
-    private void botaoGerarMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarMovimentacaoActionPerformed
-        if (!valorMovimentacao.getText().isEmpty() && !descricaoMovimentacao.getText().isEmpty()
-                && (radioVenda.isSelected() || radioCompra.isSelected())) {
-            // TODO Fazer validacao se valorMovimentacao é um double, jogar exceção para usuário na tela com mensagem de erro em movimentacaoInvalida
-            Double numericoValorMovimentacao;
-        	try {
-            	numericoValorMovimentacao = Double.parseDouble(valorMovimentacao.getText());
+    private void botaoTelaVisualizarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTelaVisualizarEstoqueActionPerformed
+        // TODO Atualizar a tabela do visualizar estoque (VÍTOR)
+        adicionaLinhasTabelaEstoque();
+        telasOperacoes.setSelectedIndex(2);
+    }//GEN-LAST:event_botaoTelaVisualizarEstoqueActionPerformed
+
+    private void botaoCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarProdutoActionPerformed
+        telasOperacoes.setSelectedIndex(3);
+    }//GEN-LAST:event_botaoCadastrarProdutoActionPerformed
+
+    private void escolheArquivoEncomendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolheArquivoEncomendaActionPerformed
+        pathEncomendasProduto = escolheArquivoEncomenda.getSelectedFile().getAbsolutePath();
+    }//GEN-LAST:event_escolheArquivoEncomendaActionPerformed
+
+    private void botaoCadastrarNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarNovoProdutoActionPerformed
+        // Verificamos se todos as campos da interface gráfica para cadastrar novo produto estão preenchidos
+        if (!nomeProduto.getText().isEmpty() && !precoCompraProduto.getText().isEmpty()
+            && !precoVendaProduto.getText().isEmpty() && !anoProducaoProduto.getText().isEmpty()
+            && !pathEncomendasProduto.isEmpty()) {
+
+            Double numericoPrecoCompra, numericoPrecoVenda;
+
+            try { // Trata a exceção para a entrada de precoCompraProduto e precoVendaProduto diferente de Double
+                numericoPrecoCompra = Double.valueOf(precoCompraProduto.getText());
+                numericoPrecoVenda = Double.valueOf(precoVendaProduto.getText());
             } catch(NumberFormatException ex) {
-            	System.out.println("Insira um valor válido");
-            	return;
+                statusCadastrarProduto.setForeground(Color.red);
+                statusCadastrarProduto.setText("ERRO: Preço de compra ou venda preenchidos com formato inválido!");
+                return;
             }
-        	
-            
-            if (radioVenda.isSelected()) { // Venda, ou seja, valorMovimentacao tem sinal positivo
-                // TODO Gerar uma instância para + numericoValorMovimentacao
-                
-                 movimentacaoMensagem.setForeground(Color.green);
-                movimentacaoMensagem.setText("Movimentação registrada com sucesso!");
-            } else { // Compra, ou seja, valorMovimentacao tem sinal negativo
-                if (atleticaRegistrada.validarMovimentacao(usuarioLogado,numericoValorMovimentacao)) {
-                    // TODO Gerar movimentação para - numericoValorMovimentacao
-                    movimentacaoMensagem.setForeground(Color.green);
-                    movimentacaoMensagem.setText("Movimentação registrada com sucesso!");
-                    //TODO Pegar a area escolhida pelo usuário, fazer uma busca usando o getArea da atletica, fazer um casting dessa
-                    //area pra area correspondente e gerar a movimentação
-                    //atleticaRegistrada.getCaixa().getMovimentacoes().add(null);
+
+            String textoNomeProduto = nomeProduto.getText();
+            String textoAnoProducaoProduto = anoProducaoProduto.getText();
+
+            Area produtos = atleticaRegistrada.getArea("Produtos");
+            Produtos produtosAtletica = (Produtos) produtos; // Downcast
+
+            // Cria um novo produto para os parâmetros validados
+            if (produtosAtletica.novoProduto(this, textoNomeProduto, numericoPrecoCompra, numericoPrecoVenda, textoAnoProducaoProduto, pathEncomendasProduto)) {
+                statusCadastrarProduto.setForeground(Color.green);
+                statusCadastrarProduto.setText("Produto cadastrado e encomendas registradas com sucesso!");
+            } else {
+                statusCadastrarProduto.setForeground(Color.red);
+                statusCadastrarProduto.setText("ERRO: Produto já registrado no sistema!");
+            }
+
+        } else {
+            statusCadastrarProduto.setForeground(Color.red);
+            statusCadastrarProduto.setText("ERRO: Há campos não preenchidos!");
+        }
+    }//GEN-LAST:event_botaoCadastrarNovoProdutoActionPerformed
+
+    private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
+        // Chama o método de gerarRelatorio() das movimentações do caixa associado a atlética
+        atleticaRegistrada.getCaixa().gerarRelatorio();
+    }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
+
+    private void areasExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areasExtratoActionPerformed
+        int selection = areasExtrato.getSelectedIndex();
+        Area areaSelecionada;
+
+        switch (selection) {
+            case 0: // Esportes
+            areaSelecionada = atleticaRegistrada.getArea("Esportes");
+            break;
+            case 1: // Eventos
+            areaSelecionada = atleticaRegistrada.getArea("Eventos");
+            break;
+            case 2: // Financeiro
+            areaSelecionada = atleticaRegistrada.getArea("Financeiro");
+            break;
+            case 3: // Social
+            areaSelecionada = atleticaRegistrada.getArea("Social");
+            break;
+            case 4: // Produtos
+            areaSelecionada = atleticaRegistrada.getArea("Produtos");
+            break;
+            default: // ERRO: Area não encontrada na instância de atlética
+            areaSelecionada = null;
+            break;
+        }
+
+        if (areaSelecionada != null) {
+            labelMembrosArea.setText(String.format("%d", areaSelecionada.quantidadeInteressados()));
+            labelSaldoArea.setText(String.format("%.2f", areaSelecionada.getSaldoFinanceiro()));
+        }
+    }//GEN-LAST:event_areasExtratoActionPerformed
+
+    private void produtosEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosEstoqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_produtosEstoqueActionPerformed
+
+    private void botaoGerarMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarMovimentacaoActionPerformed
+        // Verificamos se todos as campos da interface gráfica para gerar movimentação estão preenchidos
+        if (!valorMovimentacao.getText().isEmpty() && !descricaoMovimentacao.getText().isEmpty()
+            && (radioVenda.isSelected() || radioCompra.isSelected())) {
+
+            Double numericoValorMovimentacao;
+
+            try { // Trata a exceção para a entrada de valorMovimentação diferente de Double
+                numericoValorMovimentacao = Double.valueOf(valorMovimentacao.getText());
+            } catch(NumberFormatException ex) {
+                movimentacaoMensagem.setForeground(Color.red);
+                movimentacaoMensagem.setText("ERRO: Campo Valor (R$) preenchido com formato inválido!");
+                return;
+            }
+
+            if (radioCompra.isSelected()) { // Compra, ou seja, valorMovimentacao tem sinal negativo
+                // Verifica se a movimentação é possível para o valor disponível na instância atleticaRegistrada
+                if (numericoValorMovimentacao <= atleticaRegistrada.getCaixa().getSaldoAtual()) {
+                    if (atleticaRegistrada.validarMovimentacao(usuarioLogado,numericoValorMovimentacao)) {
+                        numericoValorMovimentacao = -numericoValorMovimentacao;
+                    } else {
+                        movimentacaoMensagem.setForeground(Color.red);
+                        movimentacaoMensagem.setText("ERRO: Valor da movimentação não compatível com o cargo!");
+                        return;
+                    }
                 } else {
                     movimentacaoMensagem.setForeground(Color.red);
-                    movimentacaoMensagem.setText("ERRO: Valor da movimentação não compatível com o cargo!");
+                    movimentacaoMensagem.setText("ERRO: Valor da movimentação excede o saldo da Atlética!");
+                    return;
                 }
+            }   
+
+            String textoDescricaoMovimentacao = descricaoMovimentacao.getText();
+            String textoArea = areasMovimentacao.getSelectedItem().toString();
+            Area areaSelecionada = atleticaRegistrada.getArea(textoArea);
+
+            // Gera uma movimentação para os parâmetros validados
+            if (atleticaRegistrada.getCaixa().gerarMovimentacao(numericoValorMovimentacao, textoDescricaoMovimentacao,
+                areaSelecionada, usuarioLogado)) {
+                movimentacaoMensagem.setForeground(Color.green);
+                movimentacaoMensagem.setText("Movimentação registrada com sucesso!");
+            } else {
+                movimentacaoMensagem.setForeground(Color.red);
+                movimentacaoMensagem.setText("ERRO: Movimentação já registrada no sistema!");
             }
+
         } else {
             movimentacaoMensagem.setForeground(Color.red);
             movimentacaoMensagem.setText("ERRO: Há campos não preenchidos!");
         }
     }//GEN-LAST:event_botaoGerarMovimentacaoActionPerformed
 
-    private void botaoTelaOperacoesEncomendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTelaOperacoesEncomendasActionPerformed
-        telasOperacoes.setSelectedIndex(2);
-    }//GEN-LAST:event_botaoTelaOperacoesEncomendasActionPerformed
-
-    private void botaoTelaVisualizarEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTelaVisualizarEstoqueActionPerformed
-        // TODO Atualizar a tabela do visualizar estoque (VÍTOR)
-        adicionaLinhasTabelaEstoque();
-        telasOperacoes.setSelectedIndex(3);
-    }//GEN-LAST:event_botaoTelaVisualizarEstoqueActionPerformed
-
-    private void botaoGerarRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoGerarRelatorioActionPerformed
-        // TODO Chamar o método de gerarRelatorio() das movimentações do caixa associado a Atletica
-    	atleticaRegistrada.getCaixa().gerarRelatorio();
-    }//GEN-LAST:event_botaoGerarRelatorioActionPerformed
-
-    private void areasExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areasExtratoActionPerformed
-        int selection = areasExtrato.getSelectedIndex();
-        // TODO Alterar para as variáveis referentes a cada Área
-        switch (selection) {
-            case 0: // Esportes
-                labelMembrosArea.setText(String.format("%d", 24));
-                labelSaldoArea.setText(String.format("%.2f", 123.123));
-                break;
-            case 1: // Eventos
-                labelMembrosArea.setText(String.format("%d", 12));
-                labelSaldoArea.setText(String.format("%.2f", 5.66));
-                break;
-            case 2: // Financeiro
-                labelMembrosArea.setText(String.format("%d", 9));
-                labelSaldoArea.setText(String.format("%.2f", 789.96));
-                break;
-            case 3: // Social
-                labelMembrosArea.setText(String.format("%d", 26));
-                labelSaldoArea.setText(String.format("%.2f", 456.963));
-                break;
-            case 4: // Produtos
-                labelMembrosArea.setText(String.format("%d", 10));
-                labelSaldoArea.setText(String.format("%.2f", 10.0));
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_areasExtratoActionPerformed
-
-    private void escolheArquivoEncomendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escolheArquivoEncomendaActionPerformed
-        // TODO Posso passar o file direto pelo getSelectedFile() ou o path (escolher qual facilita a implementação do backend)
-        String path = escolheArquivoEncomenda.getSelectedFile().getAbsolutePath();
-        // TODO Chamar o método de lida do arquivo de encomendas .csv
-    }//GEN-LAST:event_escolheArquivoEncomendaActionPerformed
-
-    private void botaoRegistrarRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarRetiradaActionPerformed
-        if (!telefoneClienteRetirada.getText().isEmpty()) {
-            // TODO Fazer validacao se o telefoneClienteRetirada está no formato desejado, jogar exceção para usuário na tela com mensagem de erro em statusRetirada
-            
-            // TODO Alterar o valor status da encomenda do cliente de pelo telefoneClienteRetirada
-            
-            statusRetirada.setForeground(Color.green);
-            statusRetirada.setText("Retirada registrada com sucesso!");
-        } else {
-            statusRetirada.setForeground(Color.red);
-            statusRetirada.setText("ERRO: Campo telefone do cliente não preenchido!");
-        }
-    }//GEN-LAST:event_botaoRegistrarRetiradaActionPerformed
-
     private void radioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioVendaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioVendaActionPerformed
 
-    private void produtosEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produtosEstoqueActionPerformed
+    private void areasMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areasMovimentacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_produtosEstoqueActionPerformed
+    }//GEN-LAST:event_areasMovimentacaoActionPerformed
+
+    private void botaoRegistrarRetiradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegistrarRetiradaActionPerformed
+        if (!nomeProdutoRetirada.getText().isEmpty() && !telefoneClienteRetirada.getText().isEmpty()) {
+            
+            Area area = atleticaRegistrada.getArea("Produtos");
+            Produtos areaProdutosAtletica = (Produtos) area; // Downcast
+            
+            if (areaProdutosAtletica.encomendaRetirada(nomeProdutoRetirada.getText(), telefoneClienteRetirada.getText())) {
+                statusRetirada.setForeground(Color.green);
+                statusRetirada.setText("Retirada(s) registrada(s) com sucesso!");
+            } else {
+                statusRetirada.setForeground(Color.red);
+                statusRetirada.setText("ERRO: Retirada de produto inválida!");
+            }
+            
+        } else {
+            statusRetirada.setForeground(Color.red);
+            statusRetirada.setText("ERRO: Há campos não preenchidos!");
+        }
+    }//GEN-LAST:event_botaoRegistrarRetiradaActionPerformed
     
     private void close() {
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
@@ -845,26 +984,32 @@ public class MenuOperacoes extends javax.swing.JFrame {
     }
     
     private void adicionaLinhasTabelaEstoque() {
-        // TODO Alterar para a Classe Produto (usar dois loops, pegar os itens contidos em estoque do produto) (VÍTOR)
         DefaultTableModel model = (DefaultTableModel) tabelaEstoque.getModel();
         model.setRowCount(0); // Limpa a tabela antes de apresentar os dados
-        ArrayList<teste> l = lista();
         Object dadosLinha[] = new Object[7];
-        for (int i = 0; i < l.size(); i++) {
-            dadosLinha[0] = l.get(i).nome;
-            dadosLinha[1] = l.get(i).id;
-            dadosLinha[2] = l.get(i).precoCompra;
-            dadosLinha[3] = l.get(i).precoVenda;
-            dadosLinha[4] = l.get(i).tamanho;
-            dadosLinha[5] = l.get(i).solicitada;
-            dadosLinha[6] = l.get(i).disponivel;
-            model.addRow(dadosLinha);
+        
+        Area area = atleticaRegistrada.getArea("Produtos");
+        Produtos areaProdutosAtletica = (Produtos) area; // Downcast
+        
+        for (Produto p : areaProdutosAtletica.getListaProdutos()) {
+            dadosLinha[0] = p.getNome();
+            dadosLinha[1] = p.getID();
+            dadosLinha[2] = p.getPrecoCompra();
+            dadosLinha[3] = p.getPrecoVenda();
+            for (Item i : p.getEstoque()) {
+                dadosLinha[4] = i.getTamanho();
+                dadosLinha[5] = i.getQuantidadeDisponivel();
+                model.addRow(dadosLinha);
+            }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField anoProducaoProduto;
     private javax.swing.JComboBox<String> areasExtrato;
     private javax.swing.JComboBox<String> areasMovimentacao;
+    private javax.swing.JButton botaoCadastrarNovoProduto;
+    private javax.swing.JButton botaoCadastrarProduto;
     private javax.swing.JButton botaoGerarMovimentacao;
     private javax.swing.JButton botaoGerarRelatorio;
     private javax.swing.JButton botaoRegistrarRetirada;
@@ -872,7 +1017,6 @@ public class MenuOperacoes extends javax.swing.JFrame {
     private javax.swing.JButton botaoSairUsuario;
     private javax.swing.JButton botaoTelaGerarMovimentacao;
     private javax.swing.JButton botaoTelaGerarRelatorio;
-    private javax.swing.JButton botaoTelaOperacoesEncomendas;
     private javax.swing.JButton botaoTelaVisualizarEstoque;
     private javax.swing.JTextField descricaoMovimentacao;
     private javax.swing.JFileChooser escolheArquivoEncomenda;
@@ -895,7 +1039,13 @@ public class MenuOperacoes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -903,7 +1053,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel labelBalanco;
     private javax.swing.JLabel labelCargoAreaUsuarioLogado;
@@ -918,11 +1068,16 @@ public class MenuOperacoes extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsuarioLogado;
     private javax.swing.JPanel movimentacao;
     private javax.swing.JLabel movimentacaoMensagem;
+    private javax.swing.JTextField nomeProduto;
+    private javax.swing.JTextField nomeProdutoRetirada;
+    private javax.swing.JTextField precoCompraProduto;
+    private javax.swing.JTextField precoVendaProduto;
     private javax.swing.JComboBox<String> produtosEstoque;
     private javax.swing.JTextField quantidadeProdutoVenda;
     private javax.swing.JRadioButton radioCompra;
     private javax.swing.JRadioButton radioVenda;
     private javax.swing.JScrollPane scrollVisualizarEstoque;
+    private javax.swing.JLabel statusCadastrarProduto;
     private javax.swing.JLabel statusRetirada;
     private javax.swing.JLabel statusVenda;
     private javax.swing.JTable tabelaEstoque;

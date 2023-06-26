@@ -162,7 +162,7 @@ public class Login extends javax.swing.JFrame {
         String stringRa = raUsuario.getText();
         String stringSenha = String.valueOf(senhaUsuario.getPassword());
         
-        if (atleticaRegistrada.verificaLoginSistema(stringRa, stringSenha)) {
+        if (atleticaRegistrada.verificaLoginSistema(stringRa,stringSenha)) {
             close();
             Pessoa usuario = atleticaRegistrada.getIntegrantes().get(stringRa);
             MenuOperacoes menu = new MenuOperacoes(usuario, atleticaRegistrada);

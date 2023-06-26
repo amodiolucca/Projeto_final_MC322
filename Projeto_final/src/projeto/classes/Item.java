@@ -1,35 +1,33 @@
 package projeto.classes;
 
-public class Item {
+ublic class Item {
 	
-	private String tamanho;
-	private int quantidadeDisponivel;
-	
-	public Item(String tamanho) {
-		this.tamanho = tamanho;
-		this.quantidadeDisponivel = 0;
-	}
+    private String tamanho;
+    private int quantidadeDisponivel;
 
-	public String getTamanho() {
-		return tamanho;
-	}
+    public Item(String tamanho) {
+        this.tamanho = tamanho;
+        this.quantidadeDisponivel = 0;
+    }
 
-	public void setTamanho(String tamanho) {
-		this.tamanho = tamanho;
-	}
+    public String getTamanho() {
+        return tamanho;
+    }
 
-	public int getQuantidadeDisponivel() {
-		return quantidadeDisponivel;
-	}
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
+    }
 
-	public void setQuantidadeDisponivel(int quantidadeDisponivel) {
-		this.quantidadeDisponivel = quantidadeDisponivel;
-	}
+    public int getQuantidadeDisponivel() {
+        return quantidadeDisponivel;
+    }
 
-	@Override
-	public String toString() {
-		return "Item [tamanho=" + tamanho + ", quantidadeDisponivel=" + quantidadeDisponivel + "]";
-	}
-	
-	
+    public void setQuantidadeDisponivel(int quantidadeDisponivel) {
+        this.quantidadeDisponivel = quantidadeDisponivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Item [tamanho=" + tamanho + ", quantidadeDisponivel=" + quantidadeDisponivel + "]";
+    }
 }

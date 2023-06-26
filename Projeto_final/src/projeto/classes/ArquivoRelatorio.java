@@ -1,29 +1,32 @@
 package projeto.classes;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
+
 public class ArquivoRelatorio {
-	private Caixa caixa;
-	
-	public ArquivoRelatorio(Caixa caixa) {
-		this.caixa = caixa;
-	}
-	
-	public boolean EscreverArquivo(String path) {
+    
+    private Caixa caixa;
+
+    public ArquivoRelatorio(Caixa caixa) {
+        this.caixa = caixa;
+    }
+
+    public boolean EscreverArquivo(String path) {
 
         try {
             FileWriter fileWriter = new FileWriter(path);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Header
-            String header = "Valor;Descrição;Área;Solicitante";
+            String header = "Valor,Descrição,Área,RA Solicitante,Nome Solicitante";
             bufferedWriter.write(header);
             bufferedWriter.newLine(); //Próxima linha
 
             // Write data to the CSV file
             for(Movimentacao m: caixa.getMovimentacoes()) {
-            	String[] dados = {Double.toString(m.getValor()), m.getDescricao(), m.getArea().getNome(), m.getSolicitante().getNome()};
-                String dataLine = String.join(";", dados);
+                String[] dados = {Double.toString(m.getValor()), m.getDescricao(), m.getArea().getNome(), m.getSolicitante().getRa(), m.getSolicitante().getNome()};
+                String dataLine = String.join(",", dados);
                 bufferedWriter.write(dataLine);
                 bufferedWriter.newLine();
             }
@@ -31,18 +34,13 @@ public class ArquivoRelatorio {
             bufferedWriter.flush();
             bufferedWriter.close();
 
-            System.out.println("Arquivo criado com sucesso.");
+            System.out.println("Arquivo relatorioMovimentacoes.csv criado com sucesso!");
             return true;
 
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Erro ao criar arquivo.");
+            System.out.println("ERRO: Não foi possível criar arquivo relatorioMovimentacoes.csv!");
             return false;
         }
     }
-
-
-	
-	
-	
 }
