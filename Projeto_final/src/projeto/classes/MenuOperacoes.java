@@ -428,7 +428,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
-        telasOperacoes.addTab("movimentacao", movimentacao);
+        telasOperacoes.addTab("Menu Movimentação", movimentacao);
 
         gerarRelatorio.setAutoscrolls(true);
 
@@ -615,7 +615,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addGap(125, 125, 125))
         );
 
-        telasOperacoes.addTab("gerarRelatorio", gerarRelatorio);
+        telasOperacoes.addTab("Menu Relatório", gerarRelatorio);
 
         scrollVisualizarEstoque.setFont(new java.awt.Font("Liberation Sans", 0, 16)); // NOI18N
 
@@ -661,7 +661,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        telasOperacoes.addTab("visualizarEstoque", jPanel5);
+        telasOperacoes.addTab("Menu Estoque", jPanel5);
 
         jLabel25.setFont(new java.awt.Font("Liberation Sans", 1, 24)); // NOI18N
         jLabel25.setText("Cadastrar Novo Produto e suas Encomendas");
@@ -769,7 +769,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
                 .addGap(12, 12, 12))
         );
 
-        telasOperacoes.addTab("cadastrarProduto", jPanel2);
+        telasOperacoes.addTab("Menu Produto", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

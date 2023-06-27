@@ -29,8 +29,7 @@ public class ArquivoEncomenda implements leituraDados {
                 tamanho = dados[2];
                 
                 if(!nomeCliente.equals("AAAECA")) {
-                	produto.getAtletica().getCaixa().gerarMovimentacao(produto.getPrecoVenda(), "Venda do produto: " + produto.getNome(), produto.getAtletica().getArea("Produtos"), menu.getUsuarioLogado());
-                	produto.getAtletica().getCaixa().gerarMovimentacao(-produto.getPrecoCompra(), "Compra do produto: " + produto.getNome(), produto.getAtletica().getArea("Produtos"), menu.getUsuarioLogado());
+                    produto.getAtletica().getCaixa().gerarMovimentacao(produto.getPrecoVenda() - produto.getPrecoCompra(), "Lucro encomenda para cliente do produto: " + produto.getNome(), produto.getAtletica().getArea("Produtos"), menu.getUsuarioLogado());
                     produto.getListaEncomendas().add(new Encomenda(nomeCliente, telefoneCliente, new Item(tamanho)));
                 } else {
                     Item item = produto.buscarItem(tamanho);
@@ -45,7 +44,7 @@ public class ArquivoEncomenda implements leituraDados {
                     if(produto.getAtletica().getCaixa().getSaldoAtual()<produto.getPrecoCompra()*Integer.parseInt(quantidade)) {
                     	System.out.println("Saldo inválido para a compra em estoque");
                     }else {
-                    	produto.getAtletica().getCaixa().gerarMovimentacao(-produto.getPrecoCompra() * Integer.parseInt(quantidade), "Compra do produto: " + produto.getNome(), produto.getAtletica().getArea("Produtos") , menu.getUsuarioLogado());
+                    	produto.getAtletica().getCaixa().gerarMovimentacao(-produto.getPrecoCompra() * Integer.parseInt(quantidade), "Compra para o estoque do produto: " + produto.getNome(), produto.getAtletica().getArea("Produtos") , menu.getUsuarioLogado());
                     }
                     
                 }
