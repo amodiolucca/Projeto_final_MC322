@@ -21,6 +21,7 @@ public class Atletica {
             System.out.println("Registro de novos usuários realizado com sucesso!");
         } else {
             System.out.println("ERRO: Falha no registro de novos usuários!");
+            System.out.println("Mude para o relative path dadosIntegrantes.csv de sua máquina!");
         }
         this.caixa = new Caixa(saldoInicioGestao);
     }

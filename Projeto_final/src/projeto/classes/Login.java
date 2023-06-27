@@ -44,6 +44,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
 
+        // Se receber um erro ao tentar abrir o arquivo, sugere-se trocar para o relative path de logoinblack.png em sua máquina
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("./logoinblack.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

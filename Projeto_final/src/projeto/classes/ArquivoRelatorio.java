@@ -40,6 +40,7 @@ public class ArquivoRelatorio {
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("ERRO: Não foi possível criar arquivo relatorioMovimentacoes.csv!");
+            System.out.println("Mude para o relative path relatorioMovimentacoes.csv de sua máquina!");
             return false;
         }
     }
