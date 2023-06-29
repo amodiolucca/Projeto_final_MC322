@@ -59,6 +59,6 @@ public class Caixa {
     public void gerarRelatorio() {
         ArquivoRelatorio arquivo = new ArquivoRelatorio(this);
         // Se receber um erro ao tentar abrir o arquivo, sugere-se trocar para o relative path de relatorioMovimentacoes.csv em sua máquina
-        arquivo.EscreverArquivo(".//src/projeto/classes/relatorioMovimentacoes.csv");
+        arquivo.EscreverArquivo(".//src/projeto/classes/Dados .csv/relatorioMovimentacoes.csv");
     }
 }

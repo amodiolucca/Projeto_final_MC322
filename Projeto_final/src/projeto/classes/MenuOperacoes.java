@@ -155,7 +155,7 @@ public class MenuOperacoes extends javax.swing.JFrame {
         jLabel1.setText("Operações");
 
         // Se receber um erro ao tentar abrir o arquivo, sugere-se trocar para o relative path de logoinblack.png em sua máquina
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("./logoinblack.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("./Imagens/logoinblack.png"))); // NOI18N
 
         labelUsuarioLogado.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
         labelUsuarioLogado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
